@@ -8,15 +8,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
 </head>
+<body style="background-image: url('{{asset("images/Abstract-Dark-Red-Layers-AI-Generated-4K-Wallpaper.jpg")}}')">
 @section('header')
 
 @endsection
 
 @section('main')
-    <h1>Hello</h1>
+    <div class="text-white" style="background-color: #2d3748">
+        <div style="margin-left: 9rem"><h1>Home</h1></div>
+    </div>
 @endsection
 
 @section('footer')
 
 @endsection
+</body>
 </html>

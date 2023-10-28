@@ -1,17 +1,19 @@
 @extends('layouts.app')
 <title>Dashboard</title>
-<div>
-    @section('header')
+<body style="background-image: url('{{asset("images/Abstract-Dark-Red-Layers-AI-Generated-4K-Wallpaper.jpg")}}')">
+    <div>
+        @section('header')
 
-    @endsection
+        @endsection
 
-    @section('main')
-        <div style="border: 2px solid; padding: 1rem">
-            <h1>This is the Dashboard</h1>
-        </div>
-    @endsection
+        @section('main')
+                <div class="text-white" style="background-color: #2d3748">
+                    <div style="margin-left: 9rem"><h1>This is the Dashboard</h1></div>
+                </div>
+        @endsection
 
-    @section('footer')
+        @section('footer')
 
-    @endsection
-</div>
+        @endsection
+    </div>
+</body>

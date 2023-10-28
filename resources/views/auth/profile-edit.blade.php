@@ -13,8 +13,8 @@
 
 @endsection
 @section('main')
-    <div class="text-white" style="border: 2px solid; padding: 1rem;">
-        <h1>This your profile</h1>
+    <div class="text-white" style="background-color: #2d3748">
+        <div style="margin-left: 9rem"><h1>This your profile</h1></div>
     </div>
     <div style="display: flex; justify-content: center; align-items: center; padding-bottom: .5rem">
         <div class="text-white" style="margin-top: 5px; border-radius: 8px; width: 80%; height: 90%; padding: 1rem;background-color: rgb(17, 24, 39);">
