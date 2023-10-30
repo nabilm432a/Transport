@@ -48,3 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'edit'])->name('edit-profile');
 });
 
+Route::middleware('admin')->group(function () {
+    Route::get('admin-panel', [\App\Http\Controllers\AdminController::class,'index'])->name('admin-panel');
+});
+
+
