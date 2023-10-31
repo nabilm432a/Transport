@@ -43,7 +43,7 @@
                                 <a href="{{route('dashboard')}}" class="text-white md:hover:text-blue-700">Dashboard</a>
                             </li>
                             <li>
-                                <a href="{{route('edit-profile')}}" class="text-white md:hover:text-blue-700">{{auth()->user()->name}}</a>
+                                <a href="{{route('profile')}}" class="text-white md:hover:text-blue-700">{{auth()->user()->name}}</a>
                             </li>
                         @endauth
                     @endif

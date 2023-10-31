@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('contact')->unique()->nullable();
             $table->string('passport')->unique()->nullable();
             $table->rememberToken();
+            $table->string('google_id')->unique()->nullable();
             $table->timestamps();
             $table->boolean('is_admin')->default('0');
         });

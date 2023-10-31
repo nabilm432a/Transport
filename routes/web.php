@@ -40,16 +40,20 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])->name('password.confirm');
-    Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
+    Route::get('confirm-password', [PasswordController::class, 'show'])->name('password.confirm');
+    Route::post('confirm-password', [PasswordController::class, 'store']);
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-    Route::get('profile', [ProfileController::class, 'edit'])->name('edit-profile');
+    Route::get('profile', [ProfileController::class, 'info_update'])->name('edit-profile');
+    Route::get('update-profile', [ProfileController::class, 'edit'])->name('profile');
 });
 
 Route::middleware('admin')->group(function () {
     Route::get('admin-panel', [\App\Http\Controllers\AdminController::class,'index'])->name('admin-panel');
 });
+
+Route::get('/login/google', [\App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('google-login');
+Route::get('/login/google/callback', [\App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);
 
 

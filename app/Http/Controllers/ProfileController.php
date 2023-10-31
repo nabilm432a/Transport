@@ -11,9 +11,12 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+    public function info_update(Request $request): View
+    {
+        return view('profile.update-info', [
+            'user' => $request->user(),
+        ]);
+    }
     public function edit(Request $request): View
     {
         return view('auth.profile', [
@@ -21,9 +24,6 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
