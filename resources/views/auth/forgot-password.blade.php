@@ -1,7 +1,7 @@
 @vite('resources/css/app.css')
 <section style="background-image: url('{{asset("images/Abstract-Dark-Red-Layers-AI-Generated-4K-Wallpaper.jpg")}}')" class="h-screen bg-gray-500 bg-cover">
     <div class="container h-full px-6 py-24">
-        <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl" style="margin-bottom: 10px"><span class="text-transparent bg-clip-text bg-gradient-to-r to-pink-700 from-red-500">Get Ready</span> To Travel</h1>
+        <h1 class="mb-4 text-3xl font-extrabold text-gray-900 text-white md:text-5xl lg:text-6xl" style="margin-bottom: 10px"><span class="text-transparent bg-clip-text bg-gradient-to-r to-pink-700 from-red-500">Get Ready</span> To Travel</h1>
         <div
             class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
             <!-- Left column container with background-->

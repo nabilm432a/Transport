@@ -23,9 +23,16 @@
                 </br>
                 <p>Email: {{auth()->user()->email}}</p>
                 </br>
-                <p>Permanent Address: </p>
+                <p>Contact: {{auth()->user()->contact}}</p>
                 </br>
-                <a href="#"><button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Update Info</button></a>
+                <p>Passport: {{auth()->user()->passport}}</p>
+                </br>
+                <a href="#">
+                    <button class="group relative h-8 w-32 overflow-hidden rounded-lg bg-gray-500 text-lg shadow focus:ring-4 focus:ring-red-300">
+                        <div class="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                        <span class="relative text-black group-hover:text-white">Update Info</span>
+                    </button>
+                </a>
 
             @endauth
         </div>

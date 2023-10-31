@@ -25,18 +25,12 @@
                 </br>
                 <p>Status: {{auth()->user()->is_admin}}</p>
                 </br>
-                <a href="#"><button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Update Info</button></a>
-
-            @endauth
-        </div>
-    </div>
-    <div style="display: flex; justify-content: center; align-items: center; padding-bottom: .5rem">
-        <div class="text-white" style="margin-top: 5px; border-radius: 8px; width: 80%; height: 90%; padding: 1rem; background-color: rgb(17, 24, 39)">
-            @auth
-                <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-2xl ">Travel <mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Profile</mark></h1>
-                <p>Here you will see all the places you travelled</p>
-                </br></br></br>
-
+                <a href="#">
+                    <button class="group relative h-8 w-32 overflow-hidden rounded-lg bg-gray-500 text-lg shadow focus:ring-4 focus:ring-red-300">
+                        <div class="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                        <span class="relative text-black group-hover:text-white">Update Info</span>
+                    </button>
+                </a>
             @endauth
         </div>
     </div>
