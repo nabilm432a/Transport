@@ -17,8 +17,17 @@
         <div style="margin-left: 9rem"><h1>Update Passport</h1></div>
     </div>
     <div style="display: flex; justify-content: center; align-items: start; padding-bottom: .5rem; flex-direction: column; margin-left: 20px">
-        <div class="text-white" style="margin-top: 5px; border-radius: 8px; width: 40%; height: 50%; padding: 1rem;background-color: rgb(17, 24, 39);">
+        <div style="margin-top: 5px; border-radius: 8px; width: 40%; height: 50%; padding: 1rem;background-color: rgb(17, 24, 39);">
+            <form method="POST" action="{{route('edit-passport')}}">
+                @csrf
+                <label for="passport" style="color: white">Enter new Passport No.</label>
+                <input type="text" style="border: white 2px solid" id="passport" name="passport" required/>
 
+                <button class="group relative h-15 w-32 overflow-hidden rounded-lg bg-gray-500 text-lg shadow focus:ring-4 focus:ring-red-300" type="submit">
+                    <div class="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                    <span class="relative text-black group-hover:text-white">Submit</span>
+                </button>
+            </form>
         </div>
 
     </div>

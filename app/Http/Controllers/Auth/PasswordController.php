@@ -26,9 +26,11 @@ class PasswordController extends Controller
         if ($user->update([
             'password' => Hash::make($validated['password']),
         ])) {
-            return redirect('profile')->with('success', 'Password successfully updated.');
+            session()->flash('success', 'Password Updated Successfully');
+            return redirect('profile');
         } else {
-            return redirect('profile')->with('error', 'An error occurred while updating the password.');
+            session()->flash('error', 'Failed to update Password');
+            return redirect('profile');
         }
     }
 

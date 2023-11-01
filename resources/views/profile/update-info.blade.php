@@ -18,22 +18,24 @@
     </div>
     <div style="display: flex; justify-content: center; align-items: start; padding-bottom: .5rem; flex-direction: column; margin-left: 20px">
         <div class="text-white" style="margin-top: 5px; border-radius: 8px; width: 40%; height: 50%; padding: 1rem;background-color: rgb(17, 24, 39);">
-            <a href="#">
-                <button class="group relative h-15 w-32 overflow-hidden rounded-lg bg-gray-500 text-lg shadow focus:ring-4 focus:ring-red-300">
+            <a href="{{route('update-passport')}}">
+                <button class="group relative h-19 w-30 overflow-hidden rounded-lg bg-gray-500 text-lg shadow focus:ring-4 focus:ring-red-300">
                     <div class="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
                     <span class="relative text-black group-hover:text-white">Update Passport No.</span>
                 </button>
             </a>
             </br></br>
-            <a href="{{route('password.confirm')}}">
-                <button class="group relative h-15 w-32 overflow-hidden rounded-lg bg-gray-500 text-lg shadow focus:ring-4 focus:ring-red-300">
-                    <div class="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-                    <span class="relative text-black group-hover:text-white">Update Password</span>
-                </button>
-            </a>
-            </br></br>
-            <a href="#">
-                <button class="group relative h-15 w-32 overflow-hidden rounded-lg bg-gray-500 text-lg shadow focus:ring-4 focus:ring-red-300">
+            @if (!auth()->user()->google_id)
+                <a href="{{route('password.confirm')}}">
+                    <button class="group relative h-19 w-30 overflow-hidden rounded-lg bg-gray-500 text-lg shadow focus:ring-4 focus:ring-red-300">
+                        <div class="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                        <span class="relative text-black group-hover:text-white">Update Password</span>
+                    </button>
+                </a>
+                </br></br>
+            @endif
+            <a href="{{route('update-contact')}}">
+                <button class="group relative h-19 w-30 overflow-hidden rounded-lg bg-gray-500 text-lg shadow focus:ring-4 focus:ring-red-300">
                     <div class="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
                     <span class="relative text-black group-hover:text-white">Update Contact</span>
                 </button>
@@ -41,8 +43,7 @@
             </div>
 
         <div>
-            <p>status</p>
-            @if(session('status'))
+            @if(session('success'))
                 <p style="color: white">{{session('success')}}</p>
             @endif
             @if(session('error'))
@@ -55,12 +56,15 @@
 
                 <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-2xl ">Account <mark class="px-2 text-white rounded bg-red-500">DELETION</mark></h1>
                 <p>Be very Cautious about this segment, Clicking delete will irrevocably delete your account and all associated information</p>
-                <a href="#">
-                    <button class="group relative h-15 w-32 overflow-hidden rounded-lg bg-white text-lg text-red-300 shadow focus:ring-4 focus:ring-red-300">
-                        <div class="absolute inset-0 w-3 bg-red-600 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-                        <span class="relative text-black group-hover:text-white">Delete Account</span>
-                    </button>
-                </a>
+                <form method="POST" action="{{route('delete-account')}}">
+                    @csrf
+                    <a>
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.')" class="group relative h-15 w-32 overflow-hidden rounded-lg bg-white text-lg text-red-300 shadow focus:ring-4 focus:ring-red-300">
+                            <div class="absolute inset-0 w-3 bg-red-600 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                            <span class="relative text-black group-hover:text-white">Delete Account</span>
+                        </button>
+                    </a>
+                </form>
 
             </div>
         </div>

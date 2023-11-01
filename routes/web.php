@@ -47,6 +47,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('profile', [ProfileController::class, 'info_update'])->name('edit-profile');
     Route::get('update-profile', [ProfileController::class, 'edit'])->name('profile');
+    Route::get('update-contact', [ProfileController::class, 'showUpdateContactForm'])->name('update-contact');
+    Route::post('update-contact', [ProfileController::class, 'UpdateContact'])->name('edit-contact');
+    Route::get('update-passport', [ProfileController::class, 'showUpdatePassportForm'])->name('update-passport');
+    Route::post('update-passport', [ProfileController::class, 'UpdatePassport'])->name('edit-passport');
+    Route::post('delete-account', [ProfileController::class, 'destroy'])->name('delete-account');
 });
 
 Route::middleware('admin')->group(function () {

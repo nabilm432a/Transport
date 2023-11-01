@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,16 +37,37 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
+    public function showUpdateContactForm() {
+        return view('profile.update-contact');
+    }
 
-    /**
-     * Delete the user's account.
-     */
+    public function UpdateContact(Request $request): RedirectResponse
+    {
+
+        $user_id = auth()->id();
+        $newcontact = $request->input('contact');
+        $existing = User::where('id',$user_id)->first();
+        $existing->update(['contact'=>$newcontact]);
+        session()->flash('success', 'Contact Updated successfully');
+        return redirect::to('profile');
+    }
+
+    public function showUpdatePassportForm() {
+        return view('profile.update-passport');
+    }
+
+    public function UpdatePassport(Request $request): RedirectResponse
+    {
+        $user_id = auth()->id();
+        $newpassport = $request->input('passport');
+        $existing = User::where('id',$user_id)->first();
+        $existing->update(['passport'=>$newpassport]);
+        session()->flash('success', 'Passport Updated successfully');
+        return redirect::to('profile');
+    }
+
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
         $user = $request->user();
 
         Auth::logout();
