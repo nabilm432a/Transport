@@ -3,7 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -58,7 +57,7 @@ Route::middleware('admin')->group(function () {
     Route::get('admin-panel', [\App\Http\Controllers\AdminController::class,'index'])->name('admin-panel');
 });
 
-Route::get('/login/google', [\App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('google-login');
-Route::get('/login/google/callback', [\App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);
+Route::get('/login/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google-login');
+Route::get('/login/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
 
 

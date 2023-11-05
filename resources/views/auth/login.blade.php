@@ -17,7 +17,6 @@
 
                 <form action="{{route('login')}}" method="POST">
                     @csrf
-                    <!-- Email input -->
                     <div class="relative mb-6" data-te-input-wrapper-init>
                         <input
                             type="text"
