@@ -49,7 +49,6 @@
                         </label>
                     </div>
 
-                    <!-- Remember me checkbox -->
                     <div class="mb-6 flex items-center justify-between">
                         <a
                             href="{{route('password.request')}}"
