@@ -30,7 +30,7 @@ class PasswordController extends Controller
             return redirect('profile');
         } else {
             session()->flash('error', 'Failed to update Password');
-            return redirect('profile');
+            return redirect('password.confirm');
         }
     }
 

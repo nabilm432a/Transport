@@ -36,6 +36,14 @@
                 </button>
             </form>
         </div>
+        <div style="border: 2px solid">
+            @if(session('success'))
+                <p style="color: white">{{session('success')}}</p>
+            @endif
+            @if(session('error'))
+                <p style="color: white">{{session('error')}}</p>
+            @endif
+        </div>
 
 
     </div>
