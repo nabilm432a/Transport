@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'steve@gmail.com',
                 'contact' => '01829475935',
                 'passport' => 'BR90124934',
+                'nid' => '246735835724532478',
                 'password' => Hash::make('123456789'),
                 'google_id' => null,
                 'is_admin' => 0,
@@ -31,6 +32,7 @@ class UsersTableSeeder extends Seeder
                 'passport' => null,
                 'password' => Hash::make('987654321'),
                 'google_id' => null,
+                'nid' => null,
                 'is_admin' => 1,
             ],
         ]);

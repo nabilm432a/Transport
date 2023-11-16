@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::post('update-contact', [ProfileController::class, 'UpdateContact'])->name('edit-contact');
     Route::get('update-passport', [ProfileController::class, 'showUpdatePassportForm'])->name('update-passport');
     Route::post('update-passport', [ProfileController::class, 'UpdatePassport'])->name('edit-passport');
+    Route::get('update-nid', [ProfileController::class, 'showUpdatenidForm'])->name('update-nid');
+    Route::post('update-pnid', [ProfileController::class, 'Update_nid'])->name('edit-nid');
     Route::post('delete-account', [ProfileController::class, 'destroy'])->name('delete-account');
 });
 

@@ -13,10 +13,10 @@
                 </div>
                 <div style="margin-left: 5px; margin-top: 5px; border-radius: 8px; width: 40%; background-color: rgb(17, 24, 39);">
                     @if(!auth()->user()->is_admin)
-                        @if(!auth()->user()->passport && !auth()->user()->contact)
-                            <p style="color: yellow; margin-left: 5px; margin-top: 5px">Welcome, you are signed up through Google, so you need to enter your passport no. and contact in your profile screen</p>
-                        @elseif(!auth()->user()->passport)
-                            <p style="color: yellow; margin-left: 5px; margin-top: 5px">Your Passport has not been added to your account yet</p>
+                        @if(!auth()->user()->nid && !auth()->user()->contact)
+                            <p style="color: yellow; margin-left: 5px; margin-top: 5px">Welcome, you are signed up through Google, so you need to enter your NID no. and contact in your profile screen</p>
+                        @elseif(!auth()->user()->nid)
+                            <p style="color: yellow; margin-left: 5px; margin-top: 5px">Your NID has not been added to your account yet</p>
                         @elseif(!auth()->user()->contact)
                             <p style="color: yellow; margin-left: 5px; margin-top: 5px">Your Contact has not been added to your account yet</p>
                         @endif

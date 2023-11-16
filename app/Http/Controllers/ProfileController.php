@@ -54,6 +54,20 @@ class ProfileController extends Controller
         return redirect::to('profile');
     }
 
+    public function showUpdatenidForm() {
+        return view('profile.update-nid');
+    }
+
+    public function Update_nid(Request $request): RedirectResponse
+    {
+        $user_id = auth()->id();
+        $new_nid = $request->input('nid');
+        $existing = User::where('id',$user_id)->first();
+        $existing->update(['nid'=>$new_nid]);
+        session()->flash('success', 'National ID number Updated successfully');
+        return redirect::to('profile');
+    }
+
     public function destroy(Request $request): RedirectResponse
     {
         $user = $request->user();
