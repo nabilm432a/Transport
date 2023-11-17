@@ -36,7 +36,7 @@
                 </button>
             </form>
         </div>
-        <div style="border: 2px solid">
+        <div>
             @if(session('success'))
                 <p style="color: white">{{session('success')}}</p>
             @endif
