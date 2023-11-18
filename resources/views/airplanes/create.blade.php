@@ -27,24 +27,37 @@
                     @csrf
                     <div class="md:flex md:items-center mb-6 mt-2">
                         <div class="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="title">
-                                Title:
+                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="license_number">
+                                License:
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input id="title" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="title" type="text">
+                            <input id="license_number" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="license_number" type="text">
                         </div>
                     </div>
-                    <div class="md:flex md:items-center mb-6">
+
+                    <div class="md:flex md:items-center mb-6 mt-2">
                         <div class="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="description">
-                                Description:
+                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="capacity">
+                                Capacity:
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <textarea id="description" class=" bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="description" type="text"></textarea>
+                            <input id="capacity" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="capacity" type="number">
                         </div>
                     </div>
+
+                    <div class="md:flex md:items-center mb-6 mt-2">
+                        <div class="md:w-1/3">
+                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="model">
+                                Model:
+                            </label>
+                        </div>
+                        <div class="md:w-2/3">
+                            <input id="model" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="model" type="text">
+                        </div>
+                    </div>
+
                     <div style="margin-top: 5px">
                         <button type="submit" class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Add</button>
                     </div>

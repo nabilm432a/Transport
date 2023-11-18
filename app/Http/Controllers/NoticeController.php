@@ -32,7 +32,11 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Notice::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+        ]);
+        return redirect()->route('Notices.index');
     }
 
     /**

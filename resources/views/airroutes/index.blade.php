@@ -31,13 +31,13 @@
             </thead>
             <tbody>
             @foreach($airroutes as $airroute) <!--Change these-->
-                <tr>
+                <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$airroute->id}}</td>
                     <td style="text-align: center;">{{$airroute->source_location->id}}</td>
                     <td style="text-align: center;">{{$airroute->destination_location->id}}</td>
                     <td style="text-align: center;">
-                        <a href="{{route('airroutes.edit', $airroute)}}" style="background-color: #9ca3af; padding: 0.4rem">Edit</a>
-                        <form style="display: inline-block; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('airroutes.destroy', $airroute)}}">
+                        <a href="{{route('airroutes.edit', $airroute)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
+                        <form style="display: inline-block;color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('airroutes.destroy', $airroute)}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Delete</button>

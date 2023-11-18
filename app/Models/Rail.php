@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Rail extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['license_number', 'capacity', 'sleeper_capacity'];
 }

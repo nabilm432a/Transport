@@ -9,6 +9,8 @@ class RailRoute extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['source_id', 'destination_id'];
+
     public function source_location() {
         return $this->belongsTo(Location::class, 'source_id');
     }

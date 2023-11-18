@@ -27,18 +27,19 @@
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Name</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Location</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Contact</th>
+                <th scope="col" class="px-6 py-3" style="text-align: center;">Actions</th>
             </tr>
             </thead>
             <tbody>
             @foreach($airports as $airport) <!--Change these-->
-                <tr>
+                <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$airport->id}}</td>
                     <td style="text-align: center;">{{$airport->name}}</td>
                     <td style="text-align: center;">{{$airport->location->city}}</td>
                     <td style="text-align: center;">{{$airport->contact}}</td>
                     <td style="text-align: center;">
-                        <a href="{{route('airports.edit', $airport)}}" style="background-color: #9ca3af; padding: 0.4rem">Edit</a>
-                        <form style="display: inline-block; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('airports.destroy', $airport)}}">
+                        <a href="{{route('airports.edit', $airport)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
+                        <form style="display: inline-block;color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('airports.destroy', $airport)}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Delete</button>

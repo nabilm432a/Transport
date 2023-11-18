@@ -12,7 +12,9 @@ class BusController extends Controller
      */
     public function index()
     {
-        //
+        $buses = Bus::all();
+
+        return view('buses.index',compact('buses'));
     }
 
     /**
@@ -20,9 +22,7 @@ class BusController extends Controller
      */
     public function create()
     {
-        $buses = Bus::all();
-
-        return view('buses.index',compact('buses'));
+        //
     }
 
     /**

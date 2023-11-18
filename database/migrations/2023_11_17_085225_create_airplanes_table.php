@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('license_number');
             $table->integer('capacity');
             $table->string('model');
-            $table->string('class');
         });
     }
 

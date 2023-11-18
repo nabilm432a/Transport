@@ -32,14 +32,14 @@
             </thead>
             <tbody>
             @foreach($rails as $rail) <!--Change these-->
-                <tr>
+                <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$rail->id}}</td>
                     <td style="text-align: center;">{{$rail->license_number}}</td>
                     <td style="text-align: center;">{{$rail->capacity}}</td>
                     <td style="text-align: center;">{{$rail->sleeper_capacity}}</td>
                     <td style="text-align: center;">
-                        <a href="{{route('rails.edit', $rail)}}" style="background-color: #9ca3af; padding: 0.4rem">Edit</a>
-                        <form style="display: inline-block; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('rails.destroy', $rail)}}">
+                        <a href="{{route('rails.edit', $rail)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
+                        <form style="display: inline-block;color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('rails.destroy', $rail)}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Delete</button>

@@ -30,9 +30,13 @@
                     <p>Notice Board</p>
                 </div>
                 </br>
-                <div style="background-color: #a0aec0">
-                    <p>Pending updates...</p>
+                @foreach($notices as $notice)
+                <div style="background-color: #a0aec0; border-radius: 8px">
+                    <h2>{{$notice->title}}</h2>
+                    <p>{{$notice->description}}</p>
                 </div>
+                </br>
+                @endforeach
             </div>
         @endif
         @endsection

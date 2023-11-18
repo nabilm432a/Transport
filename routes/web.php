@@ -13,9 +13,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('homepage');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('dashboard',[\App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
@@ -55,20 +53,26 @@ Route::middleware('admin')->group(function () {
     Route::get('routes-panel', function() {
         return view('auth.admin-panel-routes');
     })->name('routes-panel');
+
+    Route::get('ports-panel', function() {
+        return view('auth.admin-panel-ports');
+    })->name('ports-panel');
+
+    Route::resource('Notices',\App\Http\Controllers\NoticeController::class);
+    Route::resource('airplanes',\App\Http\Controllers\AirplaneController::class);
+    Route::resource('airports',\App\Http\Controllers\AirportController::class);
+    Route::resource('airroutes',\App\Http\Controllers\AirRouteController::class);
+    Route::resource('buses',\App\Http\Controllers\BusController::class);
+    Route::resource('busroutes',\App\Http\Controllers\BusRouteController::class);
+    Route::resource('busstops',\App\Http\Controllers\BusstopController::class);
+    Route::resource('rails',\App\Http\Controllers\RailController::class);
+    Route::resource('railroutes',\App\Http\Controllers\RailRouteController::class);
+    Route::resource('railstations',\App\Http\Controllers\RailstationController::class);
+
 });
 
 Route::get('/login/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google-login');
 Route::get('/login/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
 
-Route::resource('Notices',\App\Http\Controllers\NoticeController::class);
-Route::resource('airplanes',\App\Http\Controllers\AirplaneController::class);
-Route::resource('airports',\App\Http\Controllers\AirportController::class);
-Route::resource('airroutes',\App\Http\Controllers\AirRouteController::class);
-Route::resource('buses',\App\Http\Controllers\BusController::class);
-Route::resource('busroutes',\App\Http\Controllers\BusRouteController::class);
-Route::resource('busstops',\App\Http\Controllers\BusstopController::class);
-Route::resource('rails',\App\Http\Controllers\RailController::class);
-Route::resource('railroutes',\App\Http\Controllers\RailRouteController::class);
-Route::resource('railstations',\App\Http\Controllers\RailstationController::class);
 
 

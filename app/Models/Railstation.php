@@ -9,6 +9,7 @@ class Railstation extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'location_id', 'contact'];
     public function location() {
         return $this->belongsTo(Location::class, 'location_id');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Airport;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class AirportController extends Controller
@@ -22,7 +23,13 @@ class AirportController extends Controller
      */
     public function create()
     {
-        //
+        $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
+            return [
+                'id' => $location->id,
+                'name' => "{$location->country}, {$location->region}, {$location->city}"
+            ];
+        })->pluck('id', 'name');
+        return view('airports.create', compact('locations'));
     }
 
     /**
@@ -30,7 +37,12 @@ class AirportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Airport::create([
+           'location_id' => $request->input('location_id'),
+            'name' => $request->input('name'),
+            'contact' => $request->input('contact'),
+        ]);
+        return redirect()->route('airports.index');
     }
 
     /**

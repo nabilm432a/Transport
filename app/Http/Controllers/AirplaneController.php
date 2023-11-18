@@ -22,7 +22,7 @@ class AirplaneController extends Controller
      */
     public function create()
     {
-        //
+        return view('airplanes.create');
     }
 
     /**
@@ -30,7 +30,12 @@ class AirplaneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Airplane::create([
+           'license_number' => $request->input('license_number'),
+           'capacity' => $request->input('capacity'),
+           'model' => $request->input('model'),
+        ]);
+        return redirect()->route('airplanes.index');
     }
 
     /**

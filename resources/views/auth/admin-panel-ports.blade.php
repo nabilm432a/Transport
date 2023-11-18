@@ -19,31 +19,31 @@
     <div style="display: flex; justify-content: center; align-items: center; padding-bottom: .5rem">
         <div class="text-white" style="margin-top: 150px; border-radius: 8px; width: 40%; height: 90%; padding: 1rem;background-color: rgb(17, 24, 39);">
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <a href="{{route('transport-panel')}}" style="margin-top: 10px">
+                <a href="{{route('airports.index')}}" style="margin-top: 10px">
                     <button class="group relative h-10 w-72 overflow-hidden rounded-lg bg-white text-lg shadow focus:ring-4 focus:ring-red-300">
                         <div class="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-                        <span class="relative text-black group-hover:text-white">Manage Transports</span>
+                        <span class="relative text-black group-hover:text-white">Air</span>
                     </button>
                 </a>
 
-                <a href="{{route('routes-panel')}}" style="margin-top: 10px">
+                <a href="{{route('railstations.index')}}" style="margin-top: 10px">
                     <button class="group relative h-10 w-72 overflow-hidden rounded-lg bg-white text-lg shadow focus:ring-4 focus:ring-red-300">
                         <div class="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-                        <span class="relative text-black group-hover:text-white">Manage Routes</span>
+                        <span class="relative text-black group-hover:text-white">Rail</span>
                     </button>
                 </a>
 
-                <a href="{{route('ports-panel')}}" style="margin-top: 10px">
+                <a href="{{route('busstops.index')}}" style="margin-top: 10px">
                     <button class="group relative h-10 w-72 overflow-hidden rounded-lg bg-white text-lg shadow focus:ring-4 focus:ring-red-300">
                         <div class="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-                        <span class="relative text-black group-hover:text-white">Manage Ports</span>
+                        <span class="relative text-black group-hover:text-white">Bus</span>
                     </button>
                 </a>
 
-                <a href="{{route('Notices.index')}}" style="margin-top: 10px">
+                <a href="{{route('admin-panel')}}" style="margin-top: 10px">
                     <button class="group relative h-10 w-72 overflow-hidden rounded-lg bg-white text-lg shadow focus:ring-4 focus:ring-red-300">
-                        <div class="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-                        <span class="relative text-black group-hover:text-white">Manage Notices</span>
+                        <div class="absolute inset-0 w-3 bg-blue-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                        <span class="relative text-black group-hover:text-white">Go Back</span>
                     </button>
                 </a>
             </div>

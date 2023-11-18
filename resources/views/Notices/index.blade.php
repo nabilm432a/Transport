@@ -32,14 +32,14 @@
             </thead>
             <tbody>
             @foreach($notices as $notice)
-                <tr>
+                <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$notice->id}}</td>
                     <td style="text-align: center;">{{$notice->created_at}}</td>
                     <td style="text-align: center;">{{$notice->title}}</td>
                     <td style="text-align: center;">{{$notice->description}}</td>
                     <td style="text-align: center;">
-                        <a href="{{route('Notices.edit', $notice)}}" style="border: white 2px solid; padding: 0.4rem">Edit</a>
-                        <form style="display: inline-block; border: white 2px solid; padding: 0.3rem" method="POST" action="{{route('Notices.destroy', $notice)}}">
+                        <a href="{{route('Notices.edit', $notice)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
+                        <form style="display: inline-block; color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('Notices.destroy', $notice)}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Delete</button>

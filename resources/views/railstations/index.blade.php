@@ -32,14 +32,14 @@
             </thead>
             <tbody>
             @foreach($railstations as $railstation) <!--Change these-->
-                <tr>
+                <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$railstation->id}}</td>
                     <td style="text-align: center;">{{$railstation->name}}</td>
                     <td style="text-align: center;">{{$railstation->location->id}}</td>
                     <td style="text-align: center;">{{$railstation->contact}}</td>
                     <td style="text-align: center;">
-                        <a href="{{route('railstations.edit', $railstation)}}" style="background-color: #9ca3af; padding: 0.4rem">Edit</a>
-                        <form style="display: inline-block; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('railstations.destroy', $railstation)}}">
+                        <a href="{{route('railstations.edit', $railstation)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
+                        <form style="display: inline-block;color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('railstations.destroy', $railstation)}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Delete</button>
