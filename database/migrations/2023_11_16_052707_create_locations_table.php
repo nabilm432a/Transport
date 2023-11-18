@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('region');
             $table->string('city');
+            $table->unique(['country', 'region', 'city']);
         });
     }
 

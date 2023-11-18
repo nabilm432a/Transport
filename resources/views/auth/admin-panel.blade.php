@@ -46,6 +46,13 @@
                         <span class="relative text-black group-hover:text-white">Manage Notices</span>
                     </button>
                 </a>
+
+                <a href="{{route('locations.index')}}" style="margin-top: 10px">
+                    <button class="group relative h-10 w-72 overflow-hidden rounded-lg bg-white text-lg shadow focus:ring-4 focus:ring-red-300">
+                        <div class="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                        <span class="relative text-black group-hover:text-white">Manage Locations</span>
+                    </button>
+                </a>
             </div>
         </div>
 

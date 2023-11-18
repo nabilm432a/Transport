@@ -44,7 +44,7 @@ class NoticeController extends Controller
      */
     public function show(Notice $notice)
     {
-        //
+        return view('Notices.show', compact('notice'));
     }
 
     /**

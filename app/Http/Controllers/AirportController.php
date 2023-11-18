@@ -26,9 +26,9 @@ class AirportController extends Controller
         $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
             return [
                 'id' => $location->id,
-                'name' => "{$location->country}, {$location->region}, {$location->city}"
+                'name' => "{$location->city}, {$location->region}, {$location->country}"
             ];
-        })->pluck('id', 'name');
+        })->pluck('name', 'id');
         return view('airports.create', compact('locations'));
     }
 

@@ -31,10 +31,12 @@
                 </div>
                 </br>
                 @foreach($notices as $notice)
-                <div style="background-color: #a0aec0; border-radius: 8px">
-                    <h2>{{$notice->title}}</h2>
-                    <p>{{$notice->description}}</p>
-                </div>
+                <a href="{{route('notices.show', $notice)}}">
+                    <div class="opacity-100 transition duration-300 ease-in-out hover:opacity-50" style="background-color: #a0aec0; border-radius: 8px;">
+                        <h2>{{$notice->title}}</h2>
+                        <p>{{$notice->description}}</p>
+                    </div>
+                </a>
                 </br>
                 @endforeach
             </div>

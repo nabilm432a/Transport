@@ -68,9 +68,10 @@ Route::middleware('admin')->group(function () {
     Route::resource('rails',\App\Http\Controllers\RailController::class);
     Route::resource('railroutes',\App\Http\Controllers\RailRouteController::class);
     Route::resource('railstations',\App\Http\Controllers\RailstationController::class);
+    Route::resource('locations', \App\Http\Controllers\LocationController::class);
 
 });
-
+Route::get('notice/{notice}', [\App\Http\Controllers\NoticeController::class, 'show'])->name('notices.show')->middleware('auth');
 Route::get('/login/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google-login');
 Route::get('/login/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
 

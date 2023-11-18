@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AirRoute;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class AirRouteController extends Controller
@@ -22,7 +23,13 @@ class AirRouteController extends Controller
      */
     public function create()
     {
-        //
+        $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
+            return [
+                'id' => $location->id,
+                'name' => "{$location->country}, {$location->region}, {$location->city}"
+            ];
+        })->pluck('id', 'name');
+        return view('airroutes.create', compact('locations'));
     }
 
     /**
