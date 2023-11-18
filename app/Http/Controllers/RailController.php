@@ -12,7 +12,9 @@ class RailController extends Controller
      */
     public function index()
     {
-        //
+        $rails = Rail::all();
+
+        return view('rails.index',compact('rails'));
     }
 
     /**

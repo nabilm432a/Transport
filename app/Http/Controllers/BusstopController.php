@@ -20,7 +20,9 @@ class BusstopController extends Controller
      */
     public function create()
     {
-        //
+        $busstops = Busstop::all();
+
+        return view('busstops.index',compact('busstops'));
     }
 
     /**

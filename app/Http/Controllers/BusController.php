@@ -20,7 +20,9 @@ class BusController extends Controller
      */
     public function create()
     {
-        //
+        $buses = Bus::all();
+
+        return view('buses.index',compact('buses'));
     }
 
     /**

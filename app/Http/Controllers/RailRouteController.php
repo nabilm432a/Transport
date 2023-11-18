@@ -12,7 +12,9 @@ class RailRouteController extends Controller
      */
     public function index()
     {
-        //
+        $railroutes = RailRoute::all();
+
+        return view('railroutes.index',compact('railroutes'));
     }
 
     /**

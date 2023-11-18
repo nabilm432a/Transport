@@ -12,7 +12,9 @@ class RailstationController extends Controller
      */
     public function index()
     {
-        //
+        $railstations = Railstation::all();
+
+        return view('railstations.index',compact('railstations'));
     }
 
     /**

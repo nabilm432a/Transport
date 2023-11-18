@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('rails', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('license_number');
+            $table->integer('capacity');
+            $table->integer('sleeper_capacity');
         });
     }
 

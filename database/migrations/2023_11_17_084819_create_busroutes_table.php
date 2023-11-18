@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('busroutes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('source_id');
+            $table->foreign('source_id')->references('id')->on('locations');
+            $table->unsignedBigInteger('destination_id');
+            $table->foreign('destination_id')->references('id')->on('locations');
         });
     }
 

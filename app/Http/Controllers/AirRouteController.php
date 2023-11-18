@@ -12,7 +12,9 @@ class AirRouteController extends Controller
      */
     public function index()
     {
-        //
+        $airroutes = AirRoute::all();
+
+        return view('airroutes.index',compact('airroutes'));
     }
 
     /**
