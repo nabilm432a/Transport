@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BusRoute;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class BusRouteController extends Controller
@@ -12,7 +13,9 @@ class BusRouteController extends Controller
      */
     public function index()
     {
-        //
+        $busroutes = BusRoute::all();
+
+        return view('bus_routes.index',compact('busroutes'));
     }
 
     /**
@@ -20,9 +23,13 @@ class BusRouteController extends Controller
      */
     public function create()
     {
-        $busroutes = BusRoute::all();
-
-        return view('busroutes.index',compact('busroutes'));
+        $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
+            return [
+                'id' => $location->id,
+                'name' => "{$location->country}, {$location->region}, {$location->city}"
+            ];
+        })->pluck('name', 'id');
+        return view('bus_routes.create', compact('locations'));
     }
 
     /**
@@ -30,7 +37,12 @@ class BusRouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        BusRoute::create([
+            'source_id' => $request->input('source_id'),
+            'destination_id' => $request->input('destination_id'),
+            'fare' => $request->input('fare'),
+        ]);
+        return redirect()->route('bus_routes.index');
     }
 
     /**

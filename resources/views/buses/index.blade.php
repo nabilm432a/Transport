@@ -27,7 +27,6 @@
                 <th scope="col" class="px-6 py-3" style="text-align: center;">License Number</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Model</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Capacity</th>
-                <th scope="col" class="px-6 py-3" style="text-align: center;">Fare</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Actions</th>
             </tr>
             </thead>
@@ -38,7 +37,6 @@
                     <td style="text-align: center;">{{$bus->license_number}}</td>
                     <td style="text-align: center;">{{$bus->model}}</td>
                     <td style="text-align: center;">{{$bus->capacity}}</td>
-                    <td style="text-align: center;">{{$bus->fare}}</td>
                     <td style="text-align: center;">
                         <a href="{{route('buses.edit', $bus)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
                         <form style="display: inline-block;color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('buses.destroy', $bus)}}">

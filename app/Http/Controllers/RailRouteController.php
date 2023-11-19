@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
 use App\Models\RailRoute;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class RailRouteController extends Controller
     {
         $railroutes = RailRoute::all();
 
-        return view('railroutes.index',compact('railroutes'));
+        return view('rail_routes.index',compact('railroutes'));
     }
 
     /**
@@ -22,7 +23,13 @@ class RailRouteController extends Controller
      */
     public function create()
     {
-        //
+        $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
+            return [
+                'id' => $location->id,
+                'name' => "{$location->country}, {$location->region}, {$location->city}"
+            ];
+        })->pluck('name', 'id');
+        return view('rail_routes.create', compact('locations'));
     }
 
     /**
@@ -30,7 +37,12 @@ class RailRouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        RailRoute::create([
+            'source_id' => $request->input('source_id'),
+            'destination_id' => $request->input('destination_id'),
+            'fare' => $request->input('fare'),
+        ]);
+        return redirect()->route('rail_routes.index');
     }
 
     /**

@@ -61,12 +61,12 @@ Route::middleware('admin')->group(function () {
     Route::resource('Notices',\App\Http\Controllers\NoticeController::class);
     Route::resource('airplanes',\App\Http\Controllers\AirplaneController::class);
     Route::resource('airports',\App\Http\Controllers\AirportController::class);
-    Route::resource('airroutes',\App\Http\Controllers\AirRouteController::class);
+    Route::resource('air_routes',\App\Http\Controllers\AirRouteController::class);
     Route::resource('buses',\App\Http\Controllers\BusController::class);
-    Route::resource('busroutes',\App\Http\Controllers\BusRouteController::class);
-    Route::resource('busstops',\App\Http\Controllers\BusstopController::class);
+    Route::resource('bus_routes',\App\Http\Controllers\BusRouteController::class);
+    Route::resource('bus_stops',\App\Http\Controllers\BusstopController::class);
     Route::resource('rails',\App\Http\Controllers\RailController::class);
-    Route::resource('railroutes',\App\Http\Controllers\RailRouteController::class);
+    Route::resource('rail_routes',\App\Http\Controllers\RailRouteController::class);
     Route::resource('railstations',\App\Http\Controllers\RailstationController::class);
     Route::resource('locations', \App\Http\Controllers\LocationController::class);
 

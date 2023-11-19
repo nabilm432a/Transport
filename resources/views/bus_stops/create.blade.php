@@ -19,30 +19,34 @@
     <div style="display: flex; justify-content: center; align-items: center; padding-bottom: .5rem;">
         <div class="text-white w-1/3" style="margin-top: 100px; border-radius: 8px; height: 90%; padding: 3rem;background-color: rgb(17, 24, 39);">
             <div style="margin-bottom: 10px; background-color: rgb(45, 55, 72); border-radius: 8px">
-                <h2 class="mb-2 ml-2 mt-0 text-2xl font-medium leading-tight text-primary">Add a Rail Route</h2>
+                <h2 class="mb-2 ml-2 mt-0 text-2xl font-medium leading-tight text-primary">Add bus stoppage points</h2>
             </div>
 
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <form method="POST" action="{{route('railroutes.store')}}">
+                <form method="POST" action="{{route('bus_stops.store')}}">
                     @csrf
                     <div class="md:flex md:items-center mb-6 mt-2">
                         <div class="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="title">
-                                Title:
+                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="name">
+                                Name:
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input id="title" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="title" type="text">
+                            <input id="name" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="name" type="text">
                         </div>
                     </div>
-                    <div class="md:flex md:items-center mb-6">
+                    <div class="md:flex md:items-center mb-6 mt-2">
                         <div class="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="description">
-                                Description:
+                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="location">
+                                Location:
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <textarea id="description" class=" bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="description" type="text"></textarea>
+                            <select class="text-black" name="location" id="location">
+                                @foreach($locations as $id => $name)
+                                    <option class="text-black" value={{$id}}>{{$name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div style="margin-top: 5px">
@@ -52,7 +56,7 @@
 
             </div>
             <div>
-                <a href="{{route('railroutes.index')}}"><button class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Back</button></a>
+                <a href="{{route('bus_stops.index')}}"><button class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Back</button></a>
             </div>
         </div>
     </div>

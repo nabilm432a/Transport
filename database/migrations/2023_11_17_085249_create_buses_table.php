@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('license_number')->unique();
             $table->string('model');
             $table->integer('capacity');
-            $table->decimal('fare');
         });
     }
 

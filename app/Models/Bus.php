@@ -9,5 +9,5 @@ class Bus extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['license_number', 'model', 'capacity', 'fare'];
+    protected $fillable = ['license_number', 'model', 'capacity'];
 }

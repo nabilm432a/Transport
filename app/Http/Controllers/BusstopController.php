@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Busstop;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class BusstopController extends Controller
@@ -12,7 +13,9 @@ class BusstopController extends Controller
      */
     public function index()
     {
-        //
+        $busstops = Busstop::all();
+
+        return view('bus_stops.index',compact('busstops'));
     }
 
     /**
@@ -20,9 +23,13 @@ class BusstopController extends Controller
      */
     public function create()
     {
-        $busstops = Busstop::all();
-
-        return view('busstops.index',compact('busstops'));
+        $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
+            return [
+                'id' => $location->id,
+                'name' => "{$location->city}, {$location->region}, {$location->country}"
+            ];
+        })->pluck('name', 'id');
+        return view('bus_stops.create', compact('locations'));
     }
 
     /**
@@ -30,7 +37,11 @@ class BusstopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Busstop::create([
+            'location_id' => $request->input('location'),
+            'name' => $request->input('name'),
+        ]);
+        return redirect()->route('bus_stops.index');
     }
 
     /**

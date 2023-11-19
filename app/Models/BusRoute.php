@@ -9,7 +9,7 @@ class BusRoute extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['source_id', 'destination_id'];
+    protected $fillable = ['source_id', 'destination_id', 'fare'];
 
     public function source_location() {
         return $this->belongsTo(Location::class, 'source_id');

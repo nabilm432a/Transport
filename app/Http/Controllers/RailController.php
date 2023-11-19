@@ -22,7 +22,7 @@ class RailController extends Controller
      */
     public function create()
     {
-        //
+        return view('rails.create');
     }
 
     /**
@@ -30,7 +30,12 @@ class RailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Rail::create([
+            'license_number' => $request->input('license_number'),
+            'capacity' => $request->input('capacity'),
+            'sleeper_capacity' => $request->input('sleeper_capacity'),
+        ]);
+        return redirect()->route('rails.index');
     }
 
     /**

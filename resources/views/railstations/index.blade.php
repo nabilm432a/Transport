@@ -25,7 +25,7 @@
             <tr>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">ID</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Name</th>
-                <th scope="col" class="px-6 py-3" style="text-align: center;">Location_ID</th>
+                <th scope="col" class="px-6 py-3" style="text-align: center;">Location</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Contact</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Actions</th>
             </tr>
@@ -35,7 +35,7 @@
                 <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$railstation->id}}</td>
                     <td style="text-align: center;">{{$railstation->name}}</td>
-                    <td style="text-align: center;">{{$railstation->location->id}}</td>
+                    <td style="text-align: center;">{{$railstation->location->city}}</td>
                     <td style="text-align: center;">{{$railstation->contact}}</td>
                     <td style="text-align: center;">
                         <a href="{{route('railstations.edit', $railstation)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>

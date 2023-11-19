@@ -15,7 +15,7 @@ class AirRouteController extends Controller
     {
         $airroutes = AirRoute::all();
 
-        return view('airroutes.index',compact('airroutes'));
+        return view('air_routes.index',compact('airroutes'));
     }
 
     /**
@@ -28,8 +28,8 @@ class AirRouteController extends Controller
                 'id' => $location->id,
                 'name' => "{$location->country}, {$location->region}, {$location->city}"
             ];
-        })->pluck('id', 'name');
-        return view('airroutes.create', compact('locations'));
+        })->pluck('name', 'id');
+        return view('air_routes.create', compact('locations'));
     }
 
     /**
@@ -37,7 +37,12 @@ class AirRouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        AirRoute::create([
+            'source_id' => $request->input('source_id'),
+            'destination_id' => $request->input('destination_id'),
+            'fare' => $request->input('fare'),
+        ]);
+        return redirect()->route('air_routes.index');
     }
 
     /**

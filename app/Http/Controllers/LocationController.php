@@ -30,7 +30,12 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Location::create([
+           'country' => $request->input('country'),
+            'region' => $request->input('region'),
+            'city' => $request->input('city'),
+        ]);
+        return redirect()->route('locations.index');
     }
 
     /**

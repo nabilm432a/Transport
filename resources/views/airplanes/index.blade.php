@@ -38,7 +38,7 @@
                     <td style="text-align: center;">{{$airplane->capacity}}</td>
                     <td style="text-align: center;">{{$airplane->model}}</td>
                     <td style="text-align: center;">
-                        <a href="{{route('airroutes.edit', $airplane)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
+                        <a href="{{route('air_routes.edit', $airplane)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
                         <form style="display: inline-block;color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('airplanes.destroy', $airplane)}}">
                             @csrf
                             @method('DELETE')
