@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use App\Models\RailRoute;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class RailRouteController extends Controller
@@ -37,18 +38,23 @@ class RailRouteController extends Controller
      */
     public function store(Request $request)
     {
-        RailRoute::create([
-            'source_id' => $request->input('source_id'),
-            'destination_id' => $request->input('destination_id'),
-            'fare' => $request->input('fare'),
-        ]);
-        return redirect()->route('rail_routes.index');
+        try {
+            RailRoute::create([
+                'source_id' => $request->input('source_id'),
+                'destination_id' => $request->input('destination_id'),
+                'fare' => $request->input('fare'),
+            ]);
+            $message = "Successfully inserted";
+        } catch (QueryException $e) {
+            $message = "Failed to insert";
+        }
+        return redirect()->route('rail_routes.index')->with('message', $message);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(RailRoute $railRoute)
+    public function show(RailRoute $railroute)
     {
         //
     }
@@ -56,17 +62,33 @@ class RailRouteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RailRoute $railRoute)
+    public function edit(RailRoute $railroute)
     {
-        //
+        $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
+            return [
+                'id' => $location->id,
+                'name' => "{$location->country}, {$location->region}, {$location->city}"
+            ];
+        })->pluck('name', 'id');
+        return view('railroutes.edit', compact('railroute', 'locations'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RailRoute $railRoute)
+    public function update(Request $request, RailRoute $railroute)
     {
-        //
+        try {
+            $railroute->update([
+                'source_id' => $request->input('source_id'),
+                'destination_id' => $request->input('destination_id'),
+                'fare' => $request->input('fare'),
+            ]);
+            $message = "Successfully Modified";
+        } catch (QueryException $e) {
+            $message = "An error occurred trying to edit the data";
+        }
+        return redirect()->route('railroutes.index')->with('message', $message);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Airport;
 use App\Models\Location;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class AirportController extends Controller
@@ -37,12 +38,17 @@ class AirportController extends Controller
      */
     public function store(Request $request)
     {
-        Airport::create([
-           'location_id' => $request->input('location'),
-            'name' => $request->input('name'),
-            'contact' => $request->input('contact'),
-        ]);
-        return redirect()->route('airports.index');
+        try {
+            Airport::create([
+                'location_id' => $request->input('location'),
+                'name' => $request->input('name'),
+                'contact' => $request->input('contact'),
+            ]);
+            $message = "Successfully inserted";
+        } catch (QueryException $e) {
+            $message = "Failed to insert";
+        }
+        return redirect()->route('airports.index')->with('message', $message);
     }
 
     /**
@@ -58,7 +64,7 @@ class AirportController extends Controller
      */
     public function edit(Airport $airport)
     {
-        //
+        return view('airports.edit', compact('airport'));
     }
 
     /**
@@ -66,7 +72,17 @@ class AirportController extends Controller
      */
     public function update(Request $request, Airport $airport)
     {
-        //
+        try {
+            $airport->update([
+                'location_id' => $request->input('location'),
+                'name' => $request->input('name'),
+                'contact' => $request->input('contact'),
+            ]);
+            $message = "Successfully Modified";
+        } catch (QueryException $e) {
+            $message = "An error occurred trying to edit the data";
+        }
+        return redirect()->route('airports.index')->with('message', $message);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Airplane;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class AirplaneController extends Controller
@@ -30,12 +31,18 @@ class AirplaneController extends Controller
      */
     public function store(Request $request)
     {
-        Airplane::create([
-           'license_number' => $request->input('license_number'),
-           'capacity' => $request->input('capacity'),
-           'model' => $request->input('model'),
-        ]);
-        return redirect()->route('airplanes.index');
+        try {
+            Airplane::create([
+                'license_number' => $request->input('license_number'),
+                'capacity' => $request->input('capacity'),
+                'model' => $request->input('model'),
+            ]);
+            $message = "Successfully inserted";
+        } catch (QueryException $e) {
+
+            $message = "Failed to insert";
+        }
+        return redirect()->route('airplanes.index')->with('message', $message);
     }
 
     /**
@@ -51,7 +58,7 @@ class AirplaneController extends Controller
      */
     public function edit(Airplane $airplane)
     {
-        //
+        return view('airplanes.edit', compact('airplane'));
     }
 
     /**
@@ -59,7 +66,17 @@ class AirplaneController extends Controller
      */
     public function update(Request $request, Airplane $airplane)
     {
-        //
+        try {
+            $airplane->update([
+                'license_number' => $request->input('license_number'),
+                'capacity' => $request->input('capacity'),
+                'model' => $request->input('model'),
+            ]);
+            $message = "Successfully Modified";
+        } catch (QueryException $e) {
+            $message = "An error occurred trying to edit the data";
+        }
+        return redirect()->route('airplanes.index')->with('message', $message);
     }
 
     /**

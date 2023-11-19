@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('destination_id');
             $table->foreign('destination_id')->references('id')->on('locations');
             $table->decimal('fare');
+            $table->unique(['source_id', 'destination_id']);
         });
     }
 

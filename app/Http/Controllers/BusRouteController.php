@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BusRoute;
 use App\Models\Location;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class BusRouteController extends Controller
@@ -37,12 +38,17 @@ class BusRouteController extends Controller
      */
     public function store(Request $request)
     {
-        BusRoute::create([
-            'source_id' => $request->input('source_id'),
-            'destination_id' => $request->input('destination_id'),
-            'fare' => $request->input('fare'),
-        ]);
-        return redirect()->route('bus_routes.index');
+        try {
+            BusRoute::create([
+                'source_id' => $request->input('source_id'),
+                'destination_id' => $request->input('destination_id'),
+                'fare' => $request->input('fare'),
+            ]);
+            $message = "Successfully inserted";
+        } catch (QueryException $e) {
+            $message = "Failed to insert";
+        }
+        return redirect()->route('bus_routes.index')->with('message', $message);
     }
 
     /**
@@ -56,17 +62,33 @@ class BusRouteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BusRoute $busRoute)
+    public function edit(BusRoute $busroute)
     {
-        //
+        $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
+            return [
+                'id' => $location->id,
+                'name' => "{$location->country}, {$location->region}, {$location->city}"
+            ];
+        })->pluck('name', 'id');
+        return view('busroutes.edit', compact('busroute', 'locations'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BusRoute $busRoute)
+    public function update(Request $request, BusRoute $busroute)
     {
-        //
+        try {
+            $busroute->update([
+                'source_id' => $request->input('source_id'),
+                'destination_id' => $request->input('destination_id'),
+                'fare' => $request->input('fare'),
+            ]);
+            $message = "Successfully Modified";
+        } catch (QueryException $e) {
+            $message = "An error occurred trying to edit the data";
+        }
+        return redirect()->route('busroutes.index')->with('message', $message);
     }
 
     /**

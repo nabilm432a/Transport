@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AirRoute;
 use App\Models\Location;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class AirRouteController extends Controller
@@ -37,12 +38,18 @@ class AirRouteController extends Controller
      */
     public function store(Request $request)
     {
-        AirRoute::create([
-            'source_id' => $request->input('source_id'),
-            'destination_id' => $request->input('destination_id'),
-            'fare' => $request->input('fare'),
-        ]);
-        return redirect()->route('air_routes.index');
+        try {
+            AirRoute::create([
+                'source_id' => $request->input('source_id'),
+                'destination_id' => $request->input('destination_id'),
+                'fare' => $request->input('fare'),
+            ]);
+            $message = "Successfully inserted";
+        } catch (QueryException $e) {
+            $message = "Failed to insert";
+        }
+
+        return redirect()->route('air_routes.index')->with('message',$message);
     }
 
     /**
@@ -56,17 +63,33 @@ class AirRouteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AirRoute $airRoute)
+    public function edit(AirRoute $airroute)
     {
-        //
+        $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
+            return [
+                'id' => $location->id,
+                'name' => "{$location->country}, {$location->region}, {$location->city}"
+            ];
+        })->pluck('name', 'id');
+        return view('airroutes.edit', compact('airroute', 'locations'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AirRoute $airRoute)
+    public function update(Request $request, AirRoute $airroute)
     {
-        //
+        try {
+            $airroute->update([
+                'source_id' => $request->input('source_id'),
+                'destination_id' => $request->input('destination_id'),
+                'fare' => $request->input('fare'),
+            ]);
+            $message = "Successfully Modified";
+        } catch (QueryException $e) {
+            $message = "An error occurred trying to edit the data";
+        }
+        return redirect()->route('airroutes.index')->with('message', $message);
     }
 
     /**

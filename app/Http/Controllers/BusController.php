@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bus;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class BusController extends Controller
@@ -30,12 +31,17 @@ class BusController extends Controller
      */
     public function store(Request $request)
     {
-        Bus::create([
-            'license_number' => $request->input('license_number'),
-            'capacity' => $request->input('capacity'),
-            'model' => $request->input('model'),
-        ]);
-        return redirect()->route('buses.index');
+        try {
+            Bus::create([
+                'license_number' => $request->input('license_number'),
+                'capacity' => $request->input('capacity'),
+                'model' => $request->input('model'),
+            ]);
+            $message = "Successfully inserted";
+        } catch (QueryException $e) {
+            $message = "Failed to insert";
+        }
+        return redirect()->route('buses.index')->with('message', $message);
     }
 
     /**
@@ -51,7 +57,7 @@ class BusController extends Controller
      */
     public function edit(Bus $bus)
     {
-        //
+        return view('buses.edit', compact('bus'));
     }
 
     /**
@@ -59,7 +65,17 @@ class BusController extends Controller
      */
     public function update(Request $request, Bus $bus)
     {
-        //
+        try {
+            $bus->update([
+                'license_number' => $request->input('license_number'),
+                'capacity' => $request->input('capacity'),
+                'model' => $request->input('model'),
+            ]);
+            $message = "Successfully Modified";
+        } catch (QueryException $e) {
+            $message = "An error occurred trying to edit the data";
+        }
+        return redirect()->route('buses.index')->with('message', $message);
     }
 
     /**

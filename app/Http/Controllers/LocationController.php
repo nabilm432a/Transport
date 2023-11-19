@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -30,12 +31,17 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        Location::create([
-           'country' => $request->input('country'),
-            'region' => $request->input('region'),
-            'city' => $request->input('city'),
-        ]);
-        return redirect()->route('locations.index');
+        try {
+            Location::create([
+                'country' => $request->input('country'),
+                'region' => $request->input('region'),
+                'city' => $request->input('city'),
+            ]);
+            $message = "Successfully inserted";
+        } catch (QueryException $e) {
+            $message = "Failed to insert";
+        }
+        return redirect()->route('locations.index')->with('message', $message);
     }
 
     /**
@@ -51,7 +57,7 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        //
+        return view('locations.edit', compact('location'));
     }
 
     /**
@@ -59,7 +65,17 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-        //
+        try {
+            $location->update([
+                'country' => $request->input('country'),
+                'region' => $request->input('region'),
+                'city' => $request->input('city'),
+            ]);
+            $message = "Successfully Modified";
+        } catch (QueryException $e) {
+            $message = "An error occurred trying to edit the data";
+        }
+        return redirect()->route('locations.index')->with('message', $message);
     }
 
     /**

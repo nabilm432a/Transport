@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Busstop;
 use App\Models\Location;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class BusstopController extends Controller
@@ -37,11 +38,16 @@ class BusstopController extends Controller
      */
     public function store(Request $request)
     {
-        Busstop::create([
-            'location_id' => $request->input('location'),
-            'name' => $request->input('name'),
-        ]);
-        return redirect()->route('bus_stops.index');
+        try {
+            Busstop::create([
+                'location_id' => $request->input('location'),
+                'name' => $request->input('name'),
+            ]);
+            $message = "Successfully inserted";
+        } catch (QueryException $e) {
+            $message = "Failed to insert";
+        }
+        return redirect()->route('bus_stops.index')->with('message', $message);
     }
 
     /**
@@ -57,7 +63,7 @@ class BusstopController extends Controller
      */
     public function edit(Busstop $busstop)
     {
-        //
+        return view('busstops.edit', compact('busstop'));
     }
 
     /**
@@ -65,7 +71,16 @@ class BusstopController extends Controller
      */
     public function update(Request $request, Busstop $busstop)
     {
-        //
+        try {
+            $busstop->update([
+                'location_id' => $request->input('location'),
+                'name' => $request->input('name'),
+            ]);
+            $message = "Successfully Modified";
+        } catch (QueryException $e) {
+            $message = "An error occurred trying to edit the data";
+        }
+        return redirect()->route('busstops.index')->with('message', $message);
     }
 
     /**

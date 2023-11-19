@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rail;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class RailController extends Controller
@@ -30,12 +31,17 @@ class RailController extends Controller
      */
     public function store(Request $request)
     {
-        Rail::create([
-            'license_number' => $request->input('license_number'),
-            'capacity' => $request->input('capacity'),
-            'sleeper_capacity' => $request->input('sleeper_capacity'),
-        ]);
-        return redirect()->route('rails.index');
+        try {
+            Rail::create([
+                'license_number' => $request->input('license_number'),
+                'capacity' => $request->input('capacity'),
+                'sleeper_capacity' => $request->input('sleeper_capacity'),
+            ]);
+            $message = "Successfully inserted";
+        } catch (QueryException $e) {
+            $message = "Failed to insert";
+        }
+        return redirect()->route('rails.index')->with('message', $message);
     }
 
     /**
@@ -51,7 +57,7 @@ class RailController extends Controller
      */
     public function edit(Rail $rail)
     {
-        //
+        return view('rails.edit', compact('rail'));
     }
 
     /**
@@ -59,7 +65,17 @@ class RailController extends Controller
      */
     public function update(Request $request, Rail $rail)
     {
-        //
+        try {
+            $rail->update([
+                'license_number' => $request->input('license_number'),
+                'capacity' => $request->input('capacity'),
+                'sleeper_capacity' => $request->input('sleeper_capacity'),
+            ]);
+            $message = "Successfully Modified";
+        } catch (QueryException $e) {
+            $message = "An error occurred trying to edit the data";
+        }
+        return redirect()->route('rails.index')->with('message', $message);
     }
 
     /**
