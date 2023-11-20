@@ -16,7 +16,6 @@ return new class extends Migration
             $table->timestamps();
             $table->string('license_number')->unique();
             $table->integer('capacity');
-            $table->integer('sleeper_capacity');
         });
     }
 

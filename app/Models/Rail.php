@@ -9,5 +9,5 @@ class Rail extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['license_number', 'capacity', 'sleeper_capacity'];
+    protected $fillable = ['license_number', 'capacity'];
 }

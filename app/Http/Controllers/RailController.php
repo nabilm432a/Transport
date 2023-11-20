@@ -35,7 +35,6 @@ class RailController extends Controller
             Rail::create([
                 'license_number' => $request->input('license_number'),
                 'capacity' => $request->input('capacity'),
-                'sleeper_capacity' => $request->input('sleeper_capacity'),
             ]);
             $message = "Successfully inserted";
         } catch (QueryException $e) {
@@ -69,7 +68,6 @@ class RailController extends Controller
             $rail->update([
                 'license_number' => $request->input('license_number'),
                 'capacity' => $request->input('capacity'),
-                'sleeper_capacity' => $request->input('sleeper_capacity'),
             ]);
             $message = "Successfully Modified";
         } catch (QueryException $e) {

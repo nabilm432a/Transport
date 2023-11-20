@@ -34,7 +34,6 @@
                 <th scope="col" class="px-6 py-3" style="text-align: center;">ID</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">License Number</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Capacity</th>
-                <th scope="col" class="px-6 py-3" style="text-align: center;">Sleeper Capacity</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Actions</th>
             </tr>
             </thead>
@@ -44,7 +43,6 @@
                     <td style="text-align: center;">{{$rail->id}}</td>
                     <td style="text-align: center;">{{$rail->license_number}}</td>
                     <td style="text-align: center;">{{$rail->capacity}}</td>
-                    <td style="text-align: center;">{{$rail->sleeper_capacity}}</td>
                     <td style="text-align: center;">
                         <a href="{{route('rails.edit', $rail)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
                         <form style="display: inline-block;color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('rails.destroy', $rail)}}">
