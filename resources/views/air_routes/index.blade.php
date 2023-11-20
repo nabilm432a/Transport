@@ -39,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($air_routes as $air_route) <!--Change these-->
+            @foreach($air_routes as $air_route)
                 <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$air_route->id}}</td>
                     <td style="text-align: center;">{{$air_route->source_location->city}}</td>

@@ -39,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($railstations as $railstation) <!--Change these-->
+            @foreach($railstations as $railstation)
                 <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$railstation->id}}</td>
                     <td style="text-align: center;">{{$railstation->name}}</td>

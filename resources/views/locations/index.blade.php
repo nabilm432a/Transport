@@ -39,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($locations as $location) <!--Change these-->
+            @foreach($locations as $location)
                 <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$location->id}}</td>
                     <td style="text-align: center;">{{$location->city}}</td>

@@ -39,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($buses as $bus) <!--Change these-->
+            @foreach($buses as $bus)
                 <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$bus->id}}</td>
                     <td style="text-align: center;">{{$bus->license_number}}</td>

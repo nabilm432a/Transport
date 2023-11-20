@@ -39,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($rails as $rail) <!--Change these-->
+            @foreach($rails as $rail)
                 <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$rail->id}}</td>
                     <td style="text-align: center;">{{$rail->license_number}}</td>

@@ -39,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($rail_routes as $rail_route) <!--Change these-->
+            @foreach($rail_routes as $rail_route)
                 <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$rail_route->id}}</td>
                     <td style="text-align: center;">{{$rail_route->source_location->city}}</td>

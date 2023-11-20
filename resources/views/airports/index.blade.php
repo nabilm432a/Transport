@@ -39,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($airports as $airport) <!--Change these-->
+            @foreach($airports as $airport)
                 <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$airport->id}}</td>
                     <td style="text-align: center;">{{$airport->name}}</td>

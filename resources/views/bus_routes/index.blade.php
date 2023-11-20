@@ -40,7 +40,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($bus_routes as $bus_route) <!--Change these-->
+            @foreach($bus_routes as $bus_route)
                 <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$bus_route->id}}</td>
                     <td style="text-align: center;">{{$bus_route->source_location->city}}</td>

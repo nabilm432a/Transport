@@ -38,7 +38,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($bus_stops as $bus_stop) <!--Change these-->
+            @foreach($bus_stops as $bus_stop)
                 <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$bus_stop->id}}</td>
                     <td style="text-align: center;">{{$bus_stop->name}}</td>
