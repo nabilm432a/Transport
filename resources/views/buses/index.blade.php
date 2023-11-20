@@ -19,6 +19,14 @@
     <div style="margin-top: 5px">
         <a href="{{route('buses.create')}}"><button class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Add</button></a>
     </div>
+    <div style="margin-top: 5px">
+        <a href="{{route('transport-panel')}}"><button class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Back</button></a>
+    </div>
+    <div>
+        @if(session('message'))
+            <p class="text-white">{{session('message')}}</p>
+        @endif
+    </div>
     <div style="display: flex; justify-content: center; align-items: center; padding-bottom: .5rem">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

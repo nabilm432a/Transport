@@ -19,6 +19,14 @@
     <div style="margin-top: 5px">
         <a href="{{route('bus_routes.create')}}"><button class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Add</button></a>
     </div>
+    <div style="margin-top: 5px">
+        <a href="{{route('routes-panel')}}"><button class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Back</button></a>
+    </div>
+    <div>
+        @if(session('message'))
+            <p class="text-white">{{session('message')}}</p>
+        @endif
+    </div>
     <div style="display: flex; justify-content: center; align-items: center; padding-bottom: .5rem">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -32,15 +40,15 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($busroutes as $busroute) <!--Change these-->
+            @foreach($bus_routes as $bus_route) <!--Change these-->
                 <tr class="bg-gray-100">
-                    <td style="text-align: center;">{{$busroute->id}}</td>
-                    <td style="text-align: center;">{{$busroute->source_location->city}}</td>
-                    <td style="text-align: center;">{{$busroute->destination_location->city}}</td>
-                    <td style="text-align: center;">{{$busroute->fare}}</td>
+                    <td style="text-align: center;">{{$bus_route->id}}</td>
+                    <td style="text-align: center;">{{$bus_route->source_location->city}}</td>
+                    <td style="text-align: center;">{{$bus_route->destination_location->city}}</td>
+                    <td style="text-align: center;">{{$bus_route->fare}}</td>
                     <td style="text-align: center;">
-                        <a href="{{route('bus_routes.edit', $busroute)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
-                        <form style="display: inline-block;color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('bus_routes.destroy', $busroute)}}">
+                        <a href="{{route('bus_routes.edit', $bus_route)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
+                        <form style="display: inline-block;color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('bus_routes.destroy', $bus_route)}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Delete</button>

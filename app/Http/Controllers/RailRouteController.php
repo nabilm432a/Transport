@@ -14,9 +14,9 @@ class RailRouteController extends Controller
      */
     public function index()
     {
-        $railroutes = RailRoute::all();
+        $rail_routes = RailRoute::all();
 
-        return view('rail_routes.index',compact('railroutes'));
+        return view('rail_routes.index',compact('rail_routes'));
     }
 
     /**
@@ -62,7 +62,7 @@ class RailRouteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RailRoute $railroute)
+    public function edit(RailRoute $rail_route)
     {
         $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
             return [
@@ -70,16 +70,16 @@ class RailRouteController extends Controller
                 'name' => "{$location->country}, {$location->region}, {$location->city}"
             ];
         })->pluck('name', 'id');
-        return view('railroutes.edit', compact('railroute', 'locations'));
+        return view('rail_routes.edit', compact('rail_route', 'locations'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RailRoute $railroute)
+    public function update(Request $request, RailRoute $rail_route)
     {
         try {
-            $railroute->update([
+            $rail_route->update([
                 'source_id' => $request->input('source_id'),
                 'destination_id' => $request->input('destination_id'),
                 'fare' => $request->input('fare'),
@@ -88,14 +88,23 @@ class RailRouteController extends Controller
         } catch (QueryException $e) {
             $message = "An error occurred trying to edit the data";
         }
-        return redirect()->route('railroutes.index')->with('message', $message);
+        return redirect()->route('rail_routes.index')->with('message', $message);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RailRoute $railRoute)
+    public function destroy(RailRoute $rail_route)
     {
-        //
+        try {
+            $rail_route->delete();
+            return redirect()->route('rail_routes.index');
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                return redirect()->route('rail_routes.index')->with('message', 'The Route is currently required elsewhere, unable to remove');
+            } else {
+                return redirect()->route('rail_routes.index')->with('message', 'An error occurred while processing your request.');
+            }
+        }
     }
 }

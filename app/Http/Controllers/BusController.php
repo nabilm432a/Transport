@@ -83,6 +83,15 @@ class BusController extends Controller
      */
     public function destroy(Bus $bus)
     {
-        //
+        try {
+            $bus->delete();
+            return redirect()->route('buses.index');
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                return redirect()->route('buses.index')->with('message', 'The Bus data is currently in use, unable to remove');
+            } else {
+                return redirect()->route('buses.index')->with('message', 'An error occurred while processing your request.');
+            }
+        }
     }
 }

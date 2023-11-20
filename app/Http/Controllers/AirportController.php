@@ -90,6 +90,15 @@ class AirportController extends Controller
      */
     public function destroy(Airport $airport)
     {
-        //
+        try {
+            $airport->delete();
+            return redirect()->route('airports.index');
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                return redirect()->route('airports.index')->with('message', 'The Airport data is currently in use, unable to remove');
+            } else {
+                return redirect()->route('airports.index')->with('message', 'An error occurred while processing your request.');
+            }
+        }
     }
 }

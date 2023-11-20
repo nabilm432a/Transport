@@ -17,7 +17,15 @@
         <div style="margin-left: 9rem"><h1>Notice Management</h1></div>
     </div>
     <div style="margin-top: 5px">
-        <a href="{{route('Notices.create')}}"><button class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Add</button></a>
+        <a href="{{route('notices.create')}}"><button class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Add</button></a>
+    </div>
+    <div style="margin-top: 5px">
+        <a href="{{route('admin-panel')}}"><button class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Back</button></a>
+    </div>
+    <div>
+        @if(session('message'))
+            <p class="text-white">{{session('message')}}</p>
+        @endif
     </div>
     <div style="display: flex; justify-content: center; align-items: center; padding-bottom: .5rem">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -38,8 +46,8 @@
                     <td style="text-align: center;">{{$notice->title}}</td>
                     <td style="text-align: center;">{{$notice->description}}</td>
                     <td style="text-align: center;">
-                        <a href="{{route('Notices.edit', $notice)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
-                        <form style="display: inline-block; color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('Notices.destroy', $notice)}}">
+                        <a href="{{route('notices.edit', $notice)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
+                        <form style="display: inline-block; color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('notices.destroy', $notice)}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Delete</button>

@@ -58,7 +58,7 @@ Route::middleware('admin')->group(function () {
         return view('auth.admin-panel-ports');
     })->name('ports-panel');
 
-    Route::resource('Notices',\App\Http\Controllers\NoticeController::class);
+    Route::resource('notices',\App\Http\Controllers\NoticeController::class);
     Route::resource('airplanes',\App\Http\Controllers\AirplaneController::class);
     Route::resource('airports',\App\Http\Controllers\AirportController::class);
     Route::resource('air_routes',\App\Http\Controllers\AirRouteController::class);

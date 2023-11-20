@@ -84,6 +84,15 @@ class AirplaneController extends Controller
      */
     public function destroy(Airplane $airplane)
     {
-        //
+        try {
+            $airplane->delete();
+            return redirect()->route('airplanes.index');
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                return redirect()->route('airplanes.index')->with('message', 'The Airplane data is currently in use, unable to remove');
+            } else {
+                return redirect()->route('airplanes.index')->with('message', 'An error occurred while processing your request.');
+            }
+        }
     }
 }

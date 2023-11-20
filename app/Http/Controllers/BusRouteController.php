@@ -14,9 +14,9 @@ class BusRouteController extends Controller
      */
     public function index()
     {
-        $busroutes = BusRoute::all();
+        $bus_routes = BusRoute::all();
 
-        return view('bus_routes.index',compact('busroutes'));
+        return view('bus_routes.index',compact('bus_routes'));
     }
 
     /**
@@ -62,7 +62,7 @@ class BusRouteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BusRoute $busroute)
+    public function edit(BusRoute $bus_route)
     {
         $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
             return [
@@ -70,16 +70,16 @@ class BusRouteController extends Controller
                 'name' => "{$location->country}, {$location->region}, {$location->city}"
             ];
         })->pluck('name', 'id');
-        return view('busroutes.edit', compact('busroute', 'locations'));
+        return view('bus_routes.edit', compact('bus_route', 'locations'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BusRoute $busroute)
+    public function update(Request $request, BusRoute $bus_route)
     {
         try {
-            $busroute->update([
+            $bus_route->update([
                 'source_id' => $request->input('source_id'),
                 'destination_id' => $request->input('destination_id'),
                 'fare' => $request->input('fare'),
@@ -88,14 +88,23 @@ class BusRouteController extends Controller
         } catch (QueryException $e) {
             $message = "An error occurred trying to edit the data";
         }
-        return redirect()->route('busroutes.index')->with('message', $message);
+        return redirect()->route('bus_routes.index')->with('message', $message);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BusRoute $busRoute)
+    public function destroy(BusRoute $bus_route)
     {
-        //
+        try {
+            $bus_route->delete();
+            return redirect()->route('bus_routes.index');
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                return redirect()->route('bus_routes.index')->with('message', 'The Route is currently required elsewhere, unable to remove');
+            } else {
+                return redirect()->route('bus_routes.index')->with('message', 'An error occurred while processing your request.');
+            }
+        }
     }
 }

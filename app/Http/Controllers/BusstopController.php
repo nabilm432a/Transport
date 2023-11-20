@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Busstop;
+use App\Models\BusStop;
 use App\Models\Location;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -14,9 +14,9 @@ class BusstopController extends Controller
      */
     public function index()
     {
-        $busstops = Busstop::all();
+        $bus_stops = BusStop::all();
 
-        return view('bus_stops.index',compact('busstops'));
+        return view('bus_stops.index',compact('bus_stops'));
     }
 
     /**
@@ -39,7 +39,7 @@ class BusstopController extends Controller
     public function store(Request $request)
     {
         try {
-            Busstop::create([
+            BusStop::create([
                 'location_id' => $request->input('location'),
                 'name' => $request->input('name'),
             ]);
@@ -53,7 +53,7 @@ class BusstopController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Busstop $busstop)
+    public function show(BusStop $busstop)
     {
         //
     }
@@ -61,18 +61,18 @@ class BusstopController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Busstop $busstop)
+    public function edit(BusStop $bus_stop)
     {
-        return view('busstops.edit', compact('busstop'));
+        return view('bus_stops.edit', compact('bus_stop'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Busstop $busstop)
+    public function update(Request $request, BusStop $bus_stop)
     {
         try {
-            $busstop->update([
+            $bus_stop->update([
                 'location_id' => $request->input('location'),
                 'name' => $request->input('name'),
             ]);
@@ -80,14 +80,23 @@ class BusstopController extends Controller
         } catch (QueryException $e) {
             $message = "An error occurred trying to edit the data";
         }
-        return redirect()->route('busstops.index')->with('message', $message);
+        return redirect()->route('bus_stops.index')->with('message', $message);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Busstop $busstop)
+    public function destroy(BusStop $bus_stop)
     {
-        //
+        try {
+            $bus_stop->delete();
+            return redirect()->route('bus_stops.index');
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                return redirect()->route('bus_stops.index')->with('message', 'The Bus Stop data is currently in use, unable to remove');
+            } else {
+                return redirect()->route('bus_stops.index')->with('message', 'An error occurred while processing your request.');
+            }
+        }
     }
 }

@@ -83,6 +83,15 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        try {
+            $location->delete();
+            return redirect()->route('locations.index');
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                return redirect()->route('locations.index')->with('message', 'The Location is currently in use, unable to remove');
+            } else {
+                return redirect()->route('locations.index')->with('message', 'An error occurred while processing your request.');
+            }
+        }
     }
 }

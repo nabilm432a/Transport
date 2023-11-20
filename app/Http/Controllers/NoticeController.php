@@ -16,7 +16,7 @@ class NoticeController extends Controller
     {
         $notices = Notice::all();
 
-        return view('Notices.index',compact('notices'));
+        return view('notices.index',compact('notices'));
     }
 
     /**
@@ -24,7 +24,7 @@ class NoticeController extends Controller
      */
     public function create()
     {
-        return view('Notices.create');
+        return view('notices.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class NoticeController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
         ]);
-        return redirect()->route('Notices.index');
+        return redirect()->route('notices.index');
     }
 
     /**
@@ -44,7 +44,7 @@ class NoticeController extends Controller
      */
     public function show(Notice $notice)
     {
-        return view('Notices.show', compact('notice'));
+        return view('notices.show', compact('notice'));
     }
 
     /**
@@ -52,7 +52,7 @@ class NoticeController extends Controller
      */
     public function edit(Notice $notice)
     {
-        return view('Notices.edit', compact('notice'));
+        return view('notices.edit', compact('notice'));
     }
 
     /**
@@ -60,7 +60,16 @@ class NoticeController extends Controller
      */
     public function update(Request $request, Notice $notice)
     {
-        //
+        try {
+            $notice->update([
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+            ]);
+            $message = "Successfully Modified";
+        } catch (QueryException $e) {
+            $message = "An error occurred trying to edit the notice";
+        }
+        return redirect()->route('notices.index')->with('message', $message);
     }
 
     /**
@@ -70,9 +79,9 @@ class NoticeController extends Controller
     {
         try {
             $Notice->delete();
-            return redirect()->route('Notices.index');
+            return redirect()->route('notices.index');
         } catch(QueryException) {
-            return redirect()->route('Notices.index')->with('error', 'An error occurred while processing your request.');
+            return redirect()->route('notices.index')->with('error', 'An error occurred while processing your request.');
         }
     }
 }

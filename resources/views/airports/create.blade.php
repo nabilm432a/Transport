@@ -17,7 +17,7 @@
         <div style="margin-left: 9rem"><h1></h1></div>
     </div>
     <div style="display: flex; justify-content: center; align-items: center; padding-bottom: .5rem;">
-        <div class="text-white w-1/3" style="margin-top: 100px; border-radius: 8px; height: 90%; padding: 3rem;background-color: rgb(17, 24, 39);">
+        <div class="text-white" style="width: 40%;margin-top: 100px; border-radius: 8px; height: 90%; padding: 3rem;background-color: rgb(17, 24, 39);">
             <div style="margin-bottom: 10px; background-color: rgb(45, 55, 72); border-radius: 8px">
                 <h2 class="mb-2 ml-2 mt-0 text-2xl font-medium leading-tight text-primary">Add an Airport</h2>
             </div>

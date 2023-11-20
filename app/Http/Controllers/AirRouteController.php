@@ -14,9 +14,9 @@ class AirRouteController extends Controller
      */
     public function index()
     {
-        $airroutes = AirRoute::all();
+        $air_routes = AirRoute::all();
 
-        return view('air_routes.index',compact('airroutes'));
+        return view('air_routes.index',compact('air_routes'));
     }
 
     /**
@@ -63,7 +63,7 @@ class AirRouteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AirRoute $airroute)
+    public function edit(AirRoute $air_route)
     {
         $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
             return [
@@ -71,16 +71,16 @@ class AirRouteController extends Controller
                 'name' => "{$location->country}, {$location->region}, {$location->city}"
             ];
         })->pluck('name', 'id');
-        return view('airroutes.edit', compact('airroute', 'locations'));
+        return view('air_routes.edit', compact('air_route', 'locations'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AirRoute $airroute)
+    public function update(Request $request, AirRoute $air_route)
     {
         try {
-            $airroute->update([
+            $air_route->update([
                 'source_id' => $request->input('source_id'),
                 'destination_id' => $request->input('destination_id'),
                 'fare' => $request->input('fare'),
@@ -89,14 +89,23 @@ class AirRouteController extends Controller
         } catch (QueryException $e) {
             $message = "An error occurred trying to edit the data";
         }
-        return redirect()->route('airroutes.index')->with('message', $message);
+        return redirect()->route('air_routes.index')->with('message', $message);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AirRoute $airRoute)
+    public function destroy(AirRoute $airroute)
     {
-        //
+        try {
+            $airroute->delete();
+            return redirect()->route('air_routes.index');
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                return redirect()->route('air_routes.index')->with('message', 'The Route is currently required elsewhere, unable to remove');
+            } else {
+                return redirect()->route('air_routes.index')->with('message', 'An error occurred while processing your request.');
+            }
+        }
     }
 }

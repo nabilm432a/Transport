@@ -82,7 +82,7 @@ class RailstationController extends Controller
         } catch (QueryException $e) {
             $message = "An error occurred trying to edit the data";
         }
-        return redirect()->route('railstaions.index')->with('message', $message);
+        return redirect()->route('railstations.index')->with('message', $message);
     }
 
     /**
@@ -90,6 +90,15 @@ class RailstationController extends Controller
      */
     public function destroy(Railstation $railstation)
     {
-        //
+        try {
+            $railstation->delete();
+            return redirect()->route('railstations.index');
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                return redirect()->route('railstations.index')->with('message', 'The Station data is currently in use, unable to remove');
+            } else {
+                return redirect()->route('railstations.index')->with('message', 'An error occurred while processing your request.');
+            }
+        }
     }
 }

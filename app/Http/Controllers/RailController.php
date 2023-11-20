@@ -83,6 +83,15 @@ class RailController extends Controller
      */
     public function destroy(Rail $rail)
     {
-        //
+        try {
+            $rail->delete();
+            return redirect()->route('rails.index');
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                return redirect()->route('rails.index')->with('message', 'The Train data is currently in use, unable to remove');
+            } else {
+                return redirect()->route('rails.index')->with('message', 'An error occurred while processing your request.');
+            }
+        }
     }
 }

@@ -23,7 +23,7 @@
             </div>
 
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <form method="POST" action="{{route('air_routes.update', $airroute)}}">
+                <form method="POST" action="{{route('air_routes.update', $air_route)}}">
                     @method("PUT")
                     @csrf
 
@@ -64,12 +64,12 @@
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input id="fare" value="{{$airroute->fare}}" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="fare" type="number">
+                            <input id="fare" value="{{$air_route->fare}}" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="fare" type="number">
                         </div>
                     </div>
 
                     <div style="margin-top: 5px">
-                        <button type="submit" class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Add</button>
+                        <button type="submit" class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Submit</button>
                     </div>
                 </form>
 
