@@ -24,3 +24,7 @@ Make sure you have the following installed and updated:
 - Node.js and npm
 - php
 - Xampp apache server with MySql should be running
+
+## Accounts added
+Admin account: admin@gmail.com, password: 987654321
+Regular user: steve@gmail.com, password: 123456789
