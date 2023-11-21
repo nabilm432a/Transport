@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('source_id');
-            $table->foreign('source_id')->references('id')->on('locations');
+            $table->foreign('source_id')->references('id')->on('bus_stops');
             $table->unsignedBigInteger('destination_id');
-            $table->foreign('destination_id')->references('id')->on('locations');
+            $table->foreign('destination_id')->references('id')->on('bus_stops');
             $table->decimal('fare');
             $table->unique(['source_id', 'destination_id']);
         });

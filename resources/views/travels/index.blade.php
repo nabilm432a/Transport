@@ -33,13 +33,14 @@
             <tr>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">ID</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Transport Mode</th>
-                <th scope="col" class="px-6 py-3" style="text-align: center;">Vehicle ID</th>
-                <th scope="col" class="px-6 py-3" style="text-align: center;">Route ID</th>
-                <th scope="col" class="px-6 py-3" style="text-align: center;">Departure Port ID</th>
-                <th scope="col" class="px-6 py-3" style="text-align: center;">Arrival Port ID</th>
+                <th scope="col" class="px-6 py-3" style="text-align: center;">Vehicle License Number</th>
+                <th scope="col" class="px-6 py-3" style="text-align: center;">Route</th>
+                <th scope="col" class="px-6 py-3" style="text-align: center;">Departure Port</th>
+                <th scope="col" class="px-6 py-3" style="text-align: center;">Arrival Port</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Departure Time</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Arrival Time</th>
-                <th scope="col" class="px-6 py-3" style="text-align: center;">Seats Available</th>
+                <th scope="col" class="px-6 py-3" style="text-align: center;">Total Seats</th>
+                <th scope="col" class="px-6 py-3" style="text-align: center;">Booked Seats</th>
                 <th scope="col" class="px-6 py-3" style="text-align: center;">Actions</th>
             </tr>
             </thead>
@@ -59,11 +60,11 @@
                     </td>
                     <td style="text-align: center;">
                         @if($travel->transport_mode === 'bus' && $travel->busRoute)
-                            {{ $travel->busRoute->source_location->city . ' to ' .  $travel->busRoute->destination_location->city}}
+                            {{ $travel->busRoute->sourceBusStop->location->city . ' to ' .  $travel->busRoute->destinationBusStop->location->city}}
                         @elseif($travel->transport_mode === 'airplane' && $travel->airRoute)
-                            {{ $travel->busRoute->source_location->city . ' to ' .  $travel->busRoute->destination_location->city}}
+                            {{ $travel->airRoute->sourceAirport->location->city . ' to ' .  $travel->airRoute->destinationAirport->location->city}}
                         @elseif($travel->transport_mode === 'rail' && $travel->railRoute)
-                            {{ $travel->busRoute->source_location->city . ' to ' .  $travel->busRoute->destination_location->city}}
+                            {{ $travel->railRoute->sourceRailstation->location->city . ' to ' .  $travel->railRoute->destinationRailstation->location->city}}
                         @endif
                     </td>
                     <td style="text-align: center;">
@@ -86,7 +87,8 @@
                     </td>
                     <td style="text-align: center;">{{$travel->departure_time}}</td>
                     <td style="text-align: center;">{{$travel->arrival_time}}</td>
-                    <td style="text-align: center;">{{$travel->available_seats}}</td>
+                    <td style="text-align: center;">{{$travel->total_seats}}</td>
+                    <td style="text-align: center;">{{$travel->booked_seats}}</td>
                     <td style="text-align: center;">
                         <a href="{{route('travels.edit', $travel)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>
                         <form style="display: inline-block;color: white; background-color: #9ca3af; padding: 0.3rem" method="POST" action="{{route('travels.destroy', $travel)}}">

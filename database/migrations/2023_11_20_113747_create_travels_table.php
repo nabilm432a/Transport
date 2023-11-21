@@ -29,7 +29,8 @@ return new class extends Migration
             $table->unsignedBigInteger('rail_id')->nullable()->constrained('rails');
             $table->dateTime('departure_time');
             $table->dateTime('arrival_time');
-            $table->integer('available_seats');
+            $table->integer('total_seats');
+            $table->integer('booked_seats')->default('0');
         });
     }
 

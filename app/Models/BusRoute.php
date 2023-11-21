@@ -11,11 +11,11 @@ class BusRoute extends Model
 
     protected $fillable = ['source_id', 'destination_id', 'fare'];
 
-    public function source_location() {
-        return $this->belongsTo(Location::class, 'source_id');
+    public function sourceBusStop() {
+        return $this->belongsTo(BusStop::class, 'source_id');
     }
 
-    public function destination_location() {
-        return $this->belongsTo(Location::class, 'destination_id');
+    public function destinationBusStop() {
+        return $this->belongsTo(BusStop::class, 'destination_id');
     }
 }

@@ -11,11 +11,13 @@ class RailRoute extends Model
 
     protected $fillable = ['source_id', 'destination_id', 'fare'];
 
-    public function source_location() {
-        return $this->belongsTo(Location::class, 'source_id');
+    public function sourceRailstation()
+    {
+        return $this->belongsTo(Railstation::class, 'source_id');
     }
 
-    public function destination_location() {
-        return $this->belongsTo(Location::class, 'destination_id');
+    public function destinationRailstation()
+    {
+        return $this->belongsTo(Railstation::class, 'destination_id');
     }
 }

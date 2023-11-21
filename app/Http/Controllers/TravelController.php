@@ -3,8 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Airplane;
+use App\Models\Airport;
+use App\Models\AirRoute;
 use App\Models\Bus;
+use App\Models\BusRoute;
+use App\Models\BusStop;
 use App\Models\Rail;
+use App\Models\RailRoute;
+use App\Models\Railstation;
 use App\Models\Travel;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -25,7 +31,13 @@ class TravelController extends Controller
      */
     public function create()
     {
-        return view('travels.create');
+        $bus_stops  = BusStop::all();
+        $airports = Airport::all();
+        $railstations = Railstation::all();
+        $buses = Bus::all();
+        $rails = Rail::all();
+        $airplanes = Airplane::all();
+        return view('travels.create', compact('bus_stops','airports','railstations','buses','rails','airplanes'));
     }
 
     /**
@@ -44,26 +56,40 @@ class TravelController extends Controller
                 case 'bus':
                     $bus = Bus::findOrFail($request->input('bus_id'));
                     $data['bus_route_id'] = $request->input('bus_route_id');
-                    $data['departure_bus_stop_id'] = $request->input('departure_bus_stop_id');
-                    $data['arrival_bus_stop_id'] = $request->input('arrival_bus_stop_id');
                     $data['bus_id'] = $bus->id;
-                    $data['available_seats'] = $bus->capacity;
+                    $data['total_seats'] = $bus->capacity;
+                    $busRoute = BusRoute::findOrFail($request->input('bus_route_id'));
+
+                    $departureLocation = $busRoute->sourceBusStop;
+                    $arrivalLocation = $busRoute->destinationBusStop;
+                    $data['departure_bus_stop_id'] = $departureLocation->id;
+                    $data['arrival_bus_stop_id'] = $arrivalLocation->id;
+
                     break;
                 case 'airplane':
                     $airplane = Airplane::findOrFail($request->input('airplane_id'));
                     $data['air_route_id'] = $request->input('air_route_id');
-                    $data['departure_airport_id'] = $request->input('departure_airport_id');
-                    $data['arrival_airport_id'] = $request->input('arrival_airport_id');
                     $data['airplane_id'] = $airplane->id;
-                    $data['available_seats'] = $airplane->capacity;
+                    $data['total_seats'] = $airplane->capacity;
+                    $airRoute = AirRoute::findOrFail($request->input('air_route_id'));
+
+                    $departureLocation = $airRoute->sourceAirport;
+                    $arrivalLocation = $airRoute->destinationAirport;
+                    $data['departure_airport_id'] = $departureLocation->id;
+                    $data['arrival_airport_id'] = $arrivalLocation->id;
+
                     break;
                 case 'rail':
                     $rail = Rail::findOrFail($request->input('rail_id'));
                     $data['rail_route_id'] = $request->input('rail_route_id');
-                    $data['departure_railstation_id'] = $request->input('departure_railstation_id');
-                    $data['arrival_railstation_id'] = $request->input('arrival_railstation_id');
                     $data['rail_id'] = $rail->id;
-                    $data['available_seats'] = $rail->capacity;
+                    $data['total_seats'] = $rail->capacity;
+                    $railRoute = RailRoute::findOrFail($request->input('rail_route_id'));
+
+                    $departureLocation = $railRoute->sourceRailstation;
+                    $arrivalLocation = $railRoute->destinationRailstation;
+                    $data['departure_railstation_id'] = $departureLocation->id;
+                    $data['arrival_railstation_id'] = $arrivalLocation->id;
                     break;
 
                 default:

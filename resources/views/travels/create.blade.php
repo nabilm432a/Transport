@@ -48,7 +48,7 @@
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input id="departure_time" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="departure_time" type="datetime-local">
+                            <input id="departure_time" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="departure_time" type="datetime-local" value="{{ old('departure_time') }}">
                         </div>
                     </div>
 
@@ -59,25 +59,29 @@
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input id="arrival_time" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="arrival_time" type="datetime-local">
+                            <input id="arrival_time" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="arrival_time" type="datetime-local" value="{{ old('arrival_time') }}">
                         </div>
                     </div>
 
                     <div class="md:flex md:items-center mb-6 mt-2">
                         <div class="md:w-1/3">
                             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="bus_id">
-                                Bus ID:
+                                Bus:
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input id="bus_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="bus_id" type="number">
+                            <select class="text-black" name="bus_id" id="bus_id">
+                                @foreach($buses as $bus)
+                                    <option class="text-black" value="{{$bus->id}}">{{$bus->license_number}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
                     <div class="md:flex md:items-center mb-6 mt-2">
                         <div class="md:w-1/3">
                             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="bus_route_id">
-                                Bus Route ID:
+                                Bus Route:
                             </label>
                         </div>
                         <div class="md:w-2/3">
@@ -87,41 +91,23 @@
 
                     <div class="md:flex md:items-center mb-6 mt-2">
                         <div class="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="departure_bus_stop_id">
-                                Departure Bus Stop:
-                            </label>
-                        </div>
-                        <div class="md:w-2/3">
-                            <input id="departure_bus_stop_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="departure_bus_stop_id" type="number">
-                        </div>
-                    </div>
-
-                    <div class="md:flex md:items-center mb-6 mt-2">
-                        <div class="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="arrival_bus_stop_id">
-                                Arrival Bus Stop:
-                            </label>
-                        </div>
-                        <div class="md:w-2/3">
-                            <input id="arrival_bus_stop_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="arrival_bus_stop_id" type="number">
-                        </div>
-                    </div>
-
-                    <div class="md:flex md:items-center mb-6 mt-2">
-                        <div class="md:w-1/3">
                             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="airplane_id">
-                                Airplane ID:
+                                Airplane:
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input id="airplane_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="airplane_id" type="number">
+                            <select class="text-black" name="airplane_id" id="airplane_id">
+                                @foreach($airplanes as $airplane)
+                                    <option class="text-black" value="{{$airplane->id}}">{{$airplane->license_number}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
                     <div class="md:flex md:items-center mb-6 mt-2">
                         <div class="md:w-1/3">
                             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="air_route_id">
-                                Airplane Route ID:
+                                Airplane Route:
                             </label>
                         </div>
                         <div class="md:w-2/3">
@@ -131,70 +117,29 @@
 
                     <div class="md:flex md:items-center mb-6 mt-2">
                         <div class="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="departure_airport_id">
-                                Departure Airport:
-                            </label>
-                        </div>
-                        <div class="md:w-2/3">
-                            <input id="departure_airport_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="departure_airport_id" type="number">
-                        </div>
-                    </div>
-
-                    <div class="md:flex md:items-center mb-6 mt-2">
-                        <div class="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="arrival_airport_id">
-                                Arrival Airport:
-                            </label>
-                        </div>
-                        <div class="md:w-2/3">
-                            <input id="arrival_airport_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="arrival_airport_id" type="number">
-                        </div>
-                    </div>
-
-                    <div class="md:flex md:items-center mb-6 mt-2">
-                        <div class="md:w-1/3">
                             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="rail_id">
-                                Rail ID:
+                                Rail:
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input id="rail_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="rail_id" type="number">
+                            <select class="text-black" name="rail_id" id="rail_id">
+                                @foreach($rails as $rail)
+                                    <option class="text-black" value="{{$rail->id}}">{{$rail->license_number}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
                     <div class="md:flex md:items-center mb-6 mt-2">
                         <div class="md:w-1/3">
                             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="rail_route_id">
-                                Rail Route ID:
+                                Rail Route:
                             </label>
                         </div>
                         <div class="md:w-2/3">
                             <input id="rail_route_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="rail_route_id" type="number">
                         </div>
                     </div>
-
-                    <div class="md:flex md:items-center mb-6 mt-2">
-                        <div class="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="departure_railstation_id">
-                                Departure Rail Station:
-                            </label>
-                        </div>
-                        <div class="md:w-2/3">
-                            <input id="departure_railstation_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="departure_railstation_id" type="number">
-                        </div>
-                    </div>
-
-                    <div class="md:flex md:items-center mb-6 mt-2">
-                        <div class="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="arrival_railstation_id">
-                                Arrival Rail Station:
-                            </label>
-                        </div>
-                        <div class="md:w-2/3">
-                            <input id="arrival_railstation_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="arrival_railstation_id" type="number">
-                        </div>
-                    </div>
-
 
                     <div style="margin-top: 5px">
                         <button type="submit" class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Add</button>

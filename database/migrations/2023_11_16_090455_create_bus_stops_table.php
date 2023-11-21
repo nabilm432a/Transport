@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->unsignedBigInteger('location_id')->unique();
+            $table->unsignedBigInteger('location_id');
             $table->foreign('location_id')->references('id')->on('locations');
         });
     }

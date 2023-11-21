@@ -22,21 +22,21 @@ class LocationsTableSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'city' => 'City 2',
+                'city' => 'Banani',
                 'region' => 'Dhaka',
                 'country' => 'Bangladesh',
             ],
             [
                 'id' => 3,
-                'city' => 'City 3',
-                'region' => 'Chittagong',
+                'city' => 'Gulshan',
+                'region' => 'Dhaka',
                 'country' => 'Bangladesh',
             ],
             [
                 'id' => 4,
-                'city' => 'NYC',
-                'region' => 'New York',
-                'country' => 'United States of America',
+                'city' => 'Farmgate',
+                'region' => 'Dhaka',
+                'country' => 'Bangladesh',
             ]
         ]);
     }

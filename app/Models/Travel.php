@@ -15,7 +15,7 @@ class Travel extends Model
         'transport_mode', 'bus_route_id', 'air_route_id', 'rail_route_id',
         'departure_airport_id', 'arrival_airport_id', 'departure_bus_stop_id',
         'arrival_bus_stop_id', 'departure_railstation_id', 'arrival_railstation_id',
-        'bus_id', 'airplane_id', 'rail_id', 'departure_time', 'arrival_time', 'available_seats',
+        'bus_id', 'airplane_id', 'rail_id', 'departure_time', 'arrival_time', 'total_seats', 'booked_seats'
         ];
     public function busRoute()
     {

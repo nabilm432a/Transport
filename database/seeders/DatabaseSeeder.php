@@ -21,6 +21,16 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
             LocationsTableSeeder::class,
+            BusStopsTableSeeder::class,
+            BusesTableSeeder::class,
+            BusRoutesTableSeeder::class,
+            RailstationsTableSeeder::class,
+            RailsTableSeeder::class,
+            RailRoutesTableSeeder::class,
+            AirportsTableSeeder::class,
+            AirplanesTableSeeder::class,
+            AirRoutesTableSeeder::class,
+
         ]);
     }
 }
