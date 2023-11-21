@@ -85,7 +85,11 @@
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input id="bus_route_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="bus_route_id" type="number">
+                            <select class="text-black" name="bus_route_id" id="bus_route_id">
+                                @foreach($bus_routes as $bus_route)
+                                    <option class="text-black" value="{{$bus_route->id}}">{{$bus_route->sourceBusStop->location->city}} to {{$bus_route->destinationBusStop->location->city}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -111,7 +115,11 @@
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input id="air_route_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="air_route_id" type="number">
+                            <select class="text-black" name="air_route_id" id="air_route_id">
+                                @foreach($air_routes as $air_route)
+                                    <option class="text-black" value="{{$air_route->id}}">{{$air_route->sourceAirport->location->city}} to {{$air_route->destinationAirport->location->city}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -137,7 +145,11 @@
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input id="rail_route_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="rail_route_id" type="number">
+                            <select class="text-black" name="rail_route_id" id="rail_route_id">
+                                @foreach($rail_routes as $rail_route)
+                                    <option class="text-black" value="{{$rail_route->id}}">{{$rail_route->sourceRailstation->location->city}} to {{$rail_route->destinationRailstation->location->city}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 

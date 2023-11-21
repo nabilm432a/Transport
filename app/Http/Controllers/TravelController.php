@@ -31,13 +31,16 @@ class TravelController extends Controller
      */
     public function create()
     {
+        $bus_routes = BusRoute::all();
+        $air_routes = AirRoute::all();
+        $rail_routes = RailRoute::all();
         $bus_stops  = BusStop::all();
         $airports = Airport::all();
         $railstations = Railstation::all();
         $buses = Bus::all();
         $rails = Rail::all();
         $airplanes = Airplane::all();
-        return view('travels.create', compact('bus_stops','airports','railstations','buses','rails','airplanes'));
+        return view('travels.create', compact('bus_stops','airports','railstations','buses','rails','airplanes', 'bus_routes', 'air_routes', 'rail_routes'));
     }
 
     /**
