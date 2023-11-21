@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use App\Models\RailRoute;
+use App\Models\Railstation;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -24,13 +25,8 @@ class RailRouteController extends Controller
      */
     public function create()
     {
-        $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
-            return [
-                'id' => $location->id,
-                'name' => "{$location->country}, {$location->region}, {$location->city}"
-            ];
-        })->pluck('name', 'id');
-        return view('rail_routes.create', compact('locations'));
+        $railstations = Railstation::all();
+        return view('rail_routes.create', compact('railstations'));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BusRoute;
+use App\Models\BusStop;
 use App\Models\Location;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -24,13 +25,8 @@ class BusRouteController extends Controller
      */
     public function create()
     {
-        $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
-            return [
-                'id' => $location->id,
-                'name' => "{$location->country}, {$location->region}, {$location->city}"
-            ];
-        })->pluck('name', 'id');
-        return view('bus_routes.create', compact('locations'));
+        $bus_stops = BusStop::all();
+        return view('bus_routes.create', compact('bus_stops'));
     }
 
     /**

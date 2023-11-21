@@ -43,8 +43,8 @@
             @foreach($bus_routes as $bus_route)
                 <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$bus_route->id}}</td>
-                    <td style="text-align: center;">{{$bus_route->source_location->city}}</td>
-                    <td style="text-align: center;">{{$bus_route->destination_location->city}}</td>
+                    <td style="text-align: center;">{{$bus_route->sourceBusStop->location->city}}</td>
+                    <td style="text-align: center;">{{$bus_route->destinationBusStop->location->city}}</td>
                     <td style="text-align: center;">{{$bus_route->fare}}</td>
                     <td style="text-align: center;">
                         <a href="{{route('bus_routes.edit', $bus_route)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>

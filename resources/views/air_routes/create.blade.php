@@ -34,8 +34,8 @@
                         </div>
                         <div class="md:w-2/3">
                             <select class="text-black" name="source_id" id="source_id">
-                                @foreach($locations as $id => $name)
-                                    <option class="text-black" value="{{$id}}">{{$name}}</option>
+                                @foreach($airports as $airport)
+                                    <option class="text-black" value="{{$airport->id}}">{{$airport->name}}, {{$airport->location->city}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -49,8 +49,8 @@
                         </div>
                         <div class="md:w-2/3">
                             <select class="text-black" name="destination_id" id="destination_id">
-                                @foreach($locations as $id => $name)
-                                    <option class="text-black" value="{{$id}}">{{$name}}</option>
+                                @foreach($airports as $airport)
+                                    <option class="text-black" value="{{$airport->id}}">{{$airport->name}}, {{$airport->location->city}}</option>
                                 @endforeach
                             </select>
                         </div>

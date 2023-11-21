@@ -42,8 +42,8 @@
             @foreach($air_routes as $air_route)
                 <tr class="bg-gray-100">
                     <td style="text-align: center;">{{$air_route->id}}</td>
-                    <td style="text-align: center;">{{$air_route->source_location->city}}</td>
-                    <td style="text-align: center;">{{$air_route->destination_location->city}}</td>
+                    <td style="text-align: center;">{{$air_route->sourceAirport->location->city}}</td>
+                    <td style="text-align: center;">{{$air_route->destinationAirport->location->city}}</td>
                     <td style="text-align: center;">{{$air_route->fare}}</td>
                     <td style="text-align: center;">
                         <a href="{{route('air_routes.edit', $air_route)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Edit</a>

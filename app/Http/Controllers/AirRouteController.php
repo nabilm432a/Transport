@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Airport;
 use App\Models\AirRoute;
 use App\Models\Location;
 use Illuminate\Database\QueryException;
@@ -24,13 +25,8 @@ class AirRouteController extends Controller
      */
     public function create()
     {
-        $locations = Location::select('id', 'country', 'region', 'city')->get()->map(function($location) {
-            return [
-                'id' => $location->id,
-                'name' => "{$location->country}, {$location->region}, {$location->city}"
-            ];
-        })->pluck('name', 'id');
-        return view('air_routes.create', compact('locations'));
+        $airports = Airport::all();
+        return view('air_routes.create', compact('airports'));
     }
 
     /**
@@ -46,7 +42,7 @@ class AirRouteController extends Controller
             ]);
             $message = "Successfully inserted";
         } catch (QueryException $e) {
-            $message = "Failed to insert";
+            $message = "Failed to insert, Error: " . $e->getMessage();
         }
 
         return redirect()->route('air_routes.index')->with('message',$message);
@@ -95,10 +91,10 @@ class AirRouteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AirRoute $airroute)
+    public function destroy(AirRoute $air_route)
     {
         try {
-            $airroute->delete();
+            $air_route->delete();
             return redirect()->route('air_routes.index');
         } catch (QueryException $e) {
             if ($e->errorInfo[1] === 1451) {
