@@ -24,6 +24,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'google_id' => null,
                 'is_admin' => 0,
+                'points' => 0,
             ],
             [
                 'name' => 'admin',
@@ -34,6 +35,7 @@ class UsersTableSeeder extends Seeder
                 'google_id' => null,
                 'nid' => null,
                 'is_admin' => 1,
+                'points' => 0,
             ],
         ]);
     }

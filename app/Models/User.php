@@ -26,6 +26,7 @@ class User extends Authenticatable
         'passport',
         'contact',
         'nid',
+        'points',
     ];
 
     /**

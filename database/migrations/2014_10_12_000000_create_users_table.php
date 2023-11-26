@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('google_id')->unique()->nullable();
             $table->timestamps();
             $table->boolean('is_admin')->default('0');
+            $table->integer('points')->default('0');
         });
     }
 
