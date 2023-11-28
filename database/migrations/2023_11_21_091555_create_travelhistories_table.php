@@ -14,12 +14,9 @@ return new class extends Migration
         Schema::create('travelhistories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('user_id');
-            $table->date('date');
-            $table->decimal('cost');
-            $table->string('type');
-            $table->string('source_id');
-            $table->string('destination_id');
+            $table->string('user_id')->constrained('users');
+            $table->date('travel_id')->constrained('travels');
+            $table->string('payment_status');
         });
     }
 
