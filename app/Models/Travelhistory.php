@@ -9,7 +9,7 @@ class Travelhistory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'travel_id', 'payment_status'];
+    protected $fillable = ['user_id', 'travel_id','final_price', 'payment_status'];
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id');

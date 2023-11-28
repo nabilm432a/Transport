@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('user_id')->constrained('users');
             $table->date('travel_id')->constrained('travels');
+            $table->decimal('final_price');
             $table->string('payment_status');
         });
     }
