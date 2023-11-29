@@ -14,6 +14,7 @@ Route::get('/', function () {
 })->name('homepage');
 
 Route::get('dashboard',[\App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('booking',[\App\Http\Controllers\BookingController::class, 'index'])->middleware(['auth', 'verified'])->name('Bookings');
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
@@ -73,5 +74,8 @@ Route::middleware('admin')->group(function () {
 
 });
 Route::get('notice/{notice}', [\App\Http\Controllers\NoticeController::class, 'show'])->name('notices.show')->middleware('auth');
+Route::get('booking/{booking}', [\App\Http\Controllers\BookingController::class, 'show'])->name('bookings.show')->middleware('auth');
+
 Route::get('/login/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google-login');
 Route::get('/login/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
+
