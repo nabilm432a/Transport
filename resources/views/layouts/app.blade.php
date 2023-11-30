@@ -31,11 +31,13 @@
                                 <button type="submit">Logout</button>
                             </form>
                         </li>
-                        <li>
-                            <a href="{{route('Bookings')}}" class="text-white md:hover:text-blue-700">Booking</a>
-                        </li>
-
                     @endguest
+
+                    @if (auth()->user() && !auth()->user()->is_admin)
+                        <li>
+                            <a href="{{route('transport-mode-form')}}" class="text-white md:hover:text-blue-700">Book a Transport</a>
+                        </li>
+                    @endif
                     @if (auth()->user() && auth()->user()->is_admin)
                         <li>
                             <a href="{{route('admin-panel')}}" class="text-white md:hover:text-blue-700">Admin Panel</a>

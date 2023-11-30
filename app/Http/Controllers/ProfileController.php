@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Travelhistory;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -20,8 +21,10 @@ class ProfileController extends Controller
     }
     public function edit(Request $request): View
     {
+        $travelhistory = Travelhistory::where('user_id', auth()->id())->get();
         return view('auth.profile', [
             'user' => $request->user(),
+            'travelhistory' => $travelhistory,
         ]);
     }
 

@@ -43,8 +43,16 @@
         <div class="text-white" style="margin-top: 5px; border-radius: 8px; width: 80%; height: 90%; padding: 1rem; background-color: rgb(17, 24, 39)">
             @auth
                 <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-2xl ">Travel <mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Profile</mark></h1>
-                </br></br></br>
-
+                </br>
+                @foreach($travelhistory as $travel)
+                    @if($travel->travel->transport_mode == 'bus')
+                        <p>{{$travel->travel->departureBusStop->name}} to {{$travel->travel->arrivalBusStop->name}} || Price: {{$travel->final_price}} || Payment: {{$travel->payment_status}}</p>
+                    @elseif($travel->travel->transport_mode == 'airplane')
+                        <p>{{$travel->travel->departureAirport->name}} to {{$travel->travel->arrivalAirport->name}} || Price: {{$travel->final_price}} || Payment: {{$travel->payment_status}}</p>
+                    @elseif($travel->travel->transport_mode == 'rail')
+                        <p>{{$travel->travel->departureRailstation->name}} to {{$travel->travel->arrivalRailstation->name}} || Price: {{$travel->final_price}} || Payment: {{$travel->payment_status}}</p>
+                    @endif
+                @endforeach
             @endauth
         </div>
     </div>

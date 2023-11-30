@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('travelhistories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('user_id')->constrained('users');
-            $table->date('travel_id')->constrained('travels');
+            $table->unsignedBigInteger('user_id')->constrained('users');
+            $table->unsignedBigInteger('travel_id')->constrained('travels');
             $table->decimal('final_price');
-            $table->string('payment_status');
+            $table->string('payment_status')->default('Not Paid');
+            $table->unique(['user_id', 'travel_id']);
         });
     }
 
