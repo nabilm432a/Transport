@@ -7,14 +7,22 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\tripNotification;
 
 
 Route::get('/', function () {
     return view('welcome');
 })->name('homepage');
 
+Route::get('/', function () {
+    Mail::send(new tripNotification());
+    return view('mail_welcome');
+})->name('homepage');
+
 Route::get('dashboard',[\App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('booking',[\App\Http\Controllers\BookingController::class, 'index'])->middleware(['auth', 'verified'])->name('Bookings');
+Route::post('booking',[\App\Http\Controllers\BookingController::class, 'book'])->middleware(['auth', 'verified'])->name('ticketbook');
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');

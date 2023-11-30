@@ -39,6 +39,7 @@
                             <th scope="col" class="px-6 py-3" style="text-align: center;">Route</th>
                             <th scope="col" class="px-6 py-3" style="text-align: center;">Departure Port</th>
                             <th scope="col" class="px-6 py-3" style="text-align: center;">Arrival Port</th>
+                            <th scope="col" class="px-6 py-3" style="text-align: center;">Fare</th>
                             <th scope="col" class="px-6 py-3" style="text-align: center;">Departure Time</th>
                             <th scope="col" class="px-6 py-3" style="text-align: center;">Arrival Time</th>
                             <th scope="col" class="px-6 py-3" style="text-align: center;">Booked Seats</th>
@@ -77,11 +78,21 @@
                                         {{ $travel->arrivalRailstation->name }}
                                     @endif
                                 </td>
+                                <td style="text-align: center;">
+                                    @if($travel->transport_mode === 'bus' && $travel->arrivalBusStop)
+                                        {{ $travel-> busRoute->fare }}
+                                    @elseif($travel->transport_mode === 'airplane' && $travel->arrivalAirport)
+                                        {{  $travel-> airRoute->fare }}
+                                    @elseif($travel->transport_mode === 'rail' && $travel->arrivalRailstation)
+                                        {{  $travel-> railRoute->fare }}
+                                    @endif
+                                </td>
                                 <td style="text-align: center;">{{$travel->departure_time}}</td>
                                 <td style="text-align: center;">{{$travel->arrival_time}}</td>
+
                                 <td style="text-align: center;">{{$travel->booked_seats}}</td>
                                 <td style="text-align: center;">
-                                    <a href="{{route('travels.edit', $travel)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Book</a>
+                                    <a href="{{route('ticketbook', $travel)}}" style="color: white;background-color: #9ca3af; padding: 0.4rem">Book</a>
 
                                 </td>
                             </tr>
