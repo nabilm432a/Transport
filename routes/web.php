@@ -7,13 +7,22 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\tripNotification;
 
 
 Route::get('/', function () {
     return view('welcome');
 })->name('homepage');
 
+Route::get('/', function () {
+    Mail::send(new tripNotification());
+    return view('mail_welcome');
+})->name('homepage');
+
 Route::get('dashboard',[\App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('booking',[\App\Http\Controllers\BookingController::class, 'index'])->middleware(['auth', 'verified'])->name('Bookings');
+Route::post('booking',[\App\Http\Controllers\BookingController::class, 'book'])->middleware(['auth', 'verified'])->name('ticketbook');
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
@@ -73,5 +82,8 @@ Route::middleware('admin')->group(function () {
 
 });
 Route::get('notice/{notice}', [\App\Http\Controllers\NoticeController::class, 'show'])->name('notices.show')->middleware('auth');
+Route::get('booking/{booking}', [\App\Http\Controllers\BookingController::class, 'show'])->name('bookings.show')->middleware('auth');
+
 Route::get('/login/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google-login');
 Route::get('/login/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
+

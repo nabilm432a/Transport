@@ -31,6 +31,9 @@
                                 <button type="submit">Logout</button>
                             </form>
                         </li>
+                        <li>
+                            <a href="{{route('Bookings')}}" class="text-white md:hover:text-blue-700">Booking</a>
+                        </li>
 
                     @endguest
                     @if (auth()->user() && auth()->user()->is_admin)
