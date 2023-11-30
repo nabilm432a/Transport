@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Travel;
 use App\Models\Travelhistory;
+use App\Models\User;
+use App\Notifications\TripNotification;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -37,6 +39,7 @@ class TravelhistoryController extends Controller
     public function store(Request $request)
     {
         $u_id = auth()->id();
+        $user = User::where('id', $u_id)->first();
         $transport_mode = $request->input('transport_mode');
         $t_id = $request->input('travel_id');
         $travel = Travel::where('id', $t_id)->first();
@@ -57,7 +60,7 @@ class TravelhistoryController extends Controller
                 'final_price' => $price,
                 ]);
             $travel->increment('booked_seats');
-
+            $user->notify((new TripNotification()));
             $travel->save();
         } catch(QueryException $e) {
             $message = 'Unable to book';

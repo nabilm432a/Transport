@@ -15,11 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('homepage');
 
-Route::get('/', function () {
-    Mail::send(new tripNotification());
-    return view('mail_welcome');
-})->name('homepage');
-
 Route::get('dashboard',[\App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('guest')->group(function () {
