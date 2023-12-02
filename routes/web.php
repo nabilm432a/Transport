@@ -85,3 +85,34 @@ Route::get('notice/{notice}', [\App\Http\Controllers\NoticeController::class, 's
 Route::get('/login/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google-login');
 Route::get('/login/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
 
+
+#abid
+use App\Http\Controllers\PaymentController;
+// web.php
+
+
+
+
+
+Route::get('/payment', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
+//Route::post('/bkash',['BkashController@showBkashForm'])->name('bkash');
+Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
+
+Route::get('/final-payment', [PaymentController::class, 'finalPage'])->name('finalPage');
+
+
+use App\Http\Controllers\BkashController;
+Route::post('/bkash', [BkashController::class, 'showBkashForm'])->name('bkash');
+
+use App\Http\Controllers\NagadController;
+Route::post('/nagad', [NagadController::class, 'showNagadForm'])->name('nagad');
+
+use App\Http\Controllers\VisaController;
+Route::post('/visa', [VisaController::class, 'showVisaForm'])->name('visa');
+
+use App\Http\Controllers\MasterController;
+Route::post('/master', [MasterController::class, 'showMasterForm'])->name('master');
+
+Route::post('/payment/process', [PaymentController::class, 'processPayment'])->name('payment.process');
+Route::get('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+
