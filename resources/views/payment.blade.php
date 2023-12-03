@@ -49,6 +49,7 @@
         <div>
             <form action="{{ route('bkash') }}" method="POST">
                 @csrf
+                <input type="hidden" name="travel_history" value={{$travel_history}} id="">
                 <div class="bkash" style="display: inline-block; margin: 20px;">
                     <button type="submit" style="border: none; background: none; padding: 0;">
                         <img src="https://seeklogo.com/images/B/bkash-logo-835789094A-seeklogo.com.png" height="70" width="150" alt="">
@@ -59,6 +60,7 @@
         <div>
             <form action="{{ route('nagad') }}" method="POST">
                 @csrf
+                <input type="hidden" name="travel_history" value={{$travel_history}} id="">
                 <div class="nagad" style="display: inline-block; margin: 20px;">
                     <button type="submit" style="border: none; background: none; padding: 0;">
                         <img src="https://images.prothomalo.com/prothomalo-english/2020-04/cada797e-1d38-4a22-ae54-9a3317d35f39/Nagad.png?w=1200&h=524" height="70" width="150" alt="">
@@ -69,6 +71,7 @@
 
         <form action="{{ route('visa') }}" method="POST">
             @csrf
+            <input type="hidden" name="travel_history" value={{$travel_history}} id="">
             <div class="visa" style="display: inline-block; margin: 20px;">
                 <button type="submit" style="border: none; background: none; padding: 0;">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" height="70" width="150" alt="">
@@ -78,12 +81,14 @@
 
         <form action="{{ route('master') }}" method="POST">
             @csrf
+            <input type="hidden" name="travel_history" value={{$travel_history}} id="">
             <div class="master" style="display: inline-block; margin: 20px;">
                 <button type="submit" style="border: none; background: none; padding: 0;">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/200px-MasterCard_Logo.svg.png" height="70" width="150" alt="">
                 </button>
             </div>
         </form>
+
     </div>
 @endsection
 

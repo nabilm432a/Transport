@@ -54,7 +54,7 @@ class TravelhistoryController extends Controller
             $price = $travel->railRoute->fare;
         }
         try {
-            Travelhistory::create([
+            $travel_history=Travelhistory::create([
                 'user_id' => $u_id,
                 'travel_id' => $t_id,
                 'final_price' => $price,
@@ -66,7 +66,7 @@ class TravelhistoryController extends Controller
             $message = 'Unable to book';
         }
 
-        return redirect()->to('dashboard');
+        return view("payment",compact("travel_history"));
 
 
     }
