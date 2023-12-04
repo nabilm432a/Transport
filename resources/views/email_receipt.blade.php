@@ -70,35 +70,19 @@
           href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
     <div class="final_page">
         <div class="Text">
-            <h1>Your payment has been successfully completed.</h1>
+            <h1>Your payment receipt has been sent to your email.</h1>
         </div>
     </div>
     <form action="{{ route('dashboard') }}" method="get">
         @csrf
         <div class="login-form-control-single">
             <div class="login-form-control-single">
-                <button class="login-form-submit-btn" type="submit" style = "position:absolute; right:750px; top: 500px">Click here to go back to the Dashboard</button>
+                <button class="login-form-submit-btn" type="submit" style = "position:absolute; right:750px; top: 450px">Click here to go back to the Dashboard</button>
             </div>
         </div>
     </form>
 
-    <form action="{{ route('view-ticket') }}" method="get">
-        @csrf
-        <div class="login-form-control-single">
-            <div class="login-form-control-single">
-                <button class="login-form-submit-btn" type="submit" style = "position:absolute; right:990px; top: 450px">View Ticket</button>
-            </div>
-        </div>
-    </form>
 
-        <form action="{{ route('email-receipt') }}" method="get">
-            @csrf
-    <div class="login-form-control-single">
-        <div class="login-form-control-single">
-            <button class="login-form-submit-btn" type="submit" style = "position:absolute; right:690px; top: 450px">Send Payment Receipt through email</button>
-        </div>
-    </div>
-        </form>
 
     </body>
 @endsection
