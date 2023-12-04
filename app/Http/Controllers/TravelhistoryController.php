@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Notifications\TripNotification;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Log;
 
 class TravelhistoryController extends Controller
 {
@@ -54,18 +56,21 @@ class TravelhistoryController extends Controller
             $price = $travel->railRoute->fare;
         }
         try {
-            $travel_history=Travelhistory::create([
-                'user_id' => $u_id,
-                'travel_id' => $t_id,
-                'final_price' => $price,
-                ]);
+            $travel_history=Travelhistory::create(array('user_id' => $u_id,
+                    'travel_id' => $t_id,
+                    'final_price' => $price,)
+            );
+
             $travel->increment('booked_seats');
             $user->notify((new TripNotification()));
             $travel->save();
+            $travel_history->refresh();
+//            Log::info('Type of $travel_history: ' . gettype($travel_history));
+//            return redirect()->route('payment.form', ['travel_history' => $travel_history]);
+//            return redirect()->route("payment.form",compact("travel_history"));
         } catch(QueryException $e) {
             $message = 'Unable to book';
         }
-
         return view("payment",compact("travel_history"));
 
 

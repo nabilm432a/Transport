@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 
 class VisaController extends Controller
 {
-    public function showVisaForm()
+
+    public function showVisaForm(Request $request)
     {
-        return view('payment.visa');
+        $travelHistory = $request->input('travel_history');
+        return view('payment.visa', compact('travelHistory'));
     }
 }

@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class MasterController extends Controller
 {
-    public function showMasterForm()
+    public function showMasterForm(Request $request)
     {
-        return view('payment.master');
+        $travelHistory = $request->input('travel_history');
+        return view('payment.master', compact('travelHistory'));
     }
 }

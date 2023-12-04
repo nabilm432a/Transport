@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 
 class BkashController extends Controller
 {
-    public function showBkashForm()
+    public function showBkashForm(Request $request)
     {
-        return view('payment.bkash');
+        $travelHistory = $request->input('travel_history');
+        return view('payment.bkash', compact('travelHistory'));
     }
 //    public function processPayment()
 //    {

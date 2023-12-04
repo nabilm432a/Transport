@@ -47,10 +47,15 @@
             <h1 style="font-size: 36px;">Select Payment Method</h1>
         </div>
         <div>
+
+{{--            <?php--}}
+{{--            echo $travel_history ?>--}}
             <form action="{{ route('bkash') }}" method="POST">
                 @csrf
                 <input type="hidden" name="travel_history" value={{$travel_history}} id="">
+{{--                Final Price: {{ $travel_history->final_price }}--}}
                 <div class="bkash" style="display: inline-block; margin: 20px;">
+
                     <button type="submit" style="border: none; background: none; padding: 0;">
                         <img src="https://seeklogo.com/images/B/bkash-logo-835789094A-seeklogo.com.png" height="70" width="150" alt="">
                     </button>
@@ -61,6 +66,8 @@
             <form action="{{ route('nagad') }}" method="POST">
                 @csrf
                 <input type="hidden" name="travel_history" value={{$travel_history}} id="">
+{{--                <?php--}}
+{{--                    return view("payment",compact("travel_history"));?>--}}
                 <div class="nagad" style="display: inline-block; margin: 20px;">
                     <button type="submit" style="border: none; background: none; padding: 0;">
                         <img src="https://images.prothomalo.com/prothomalo-english/2020-04/cada797e-1d38-4a22-ae54-9a3317d35f39/Nagad.png?w=1200&h=524" height="70" width="150" alt="">
@@ -88,6 +95,19 @@
                 </button>
             </div>
         </form>
+
+{{--            <div class="container">--}}
+{{--                <h1>Payment Page</h1>--}}
+
+
+{{--                    <p>User ID:{{$travel_history['user_id']}} </p>--}}
+{{--                    <p>Travel ID: {{$travel_history['travel_id']}}</p>--}}
+{{--                    <p>Final Price: {{$travel_history['final_price']}}</p>--}}
+{{--                    <!-- Add more details as needed -->--}}
+{{--            </div>--}}
+
+
+
 
     </div>
 @endsection

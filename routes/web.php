@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\tripNotification;
 
 
+
 Route::get('/', function () {
     return view('welcome');
 })->name('homepage');
@@ -94,7 +95,8 @@ use App\Http\Controllers\PaymentController;
 
 
 
-Route::get('/payment', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
+//Route::get('/payment/{travel_history}', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
+Route::get('/payment/{travel_history}', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
 //Route::post('/bkash',['BkashController@showBkashForm'])->name('bkash');
 Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
 
@@ -115,4 +117,9 @@ Route::post('/master', [MasterController::class, 'showMasterForm'])->name('maste
 
 Route::post('/payment/process', [PaymentController::class, 'processPayment'])->name('payment.process');
 Route::get('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+
+#=======================
+//view ticket abid
+use App\Http\Controllers\TicketController;
+Route::get('/view-ticket', [TicketController::class, 'showTicket'])->name('view-ticket');
 

@@ -102,6 +102,7 @@
         </div>
         <form action="{{ route('processPayment') }}" method="post">
             @csrf
+            <input type="hidden" name="travel_history1" value={{$travelHistory}} id="">
             <p style = "position:absolute; right:152px; top: 97px">Enter Your Visa Card Number</p>
             <div class="input"style = "position:absolute; right:133px; top: 120px">
                 <input type="text" name="number" id="number" placeholder="XXXXXXXXXXX">
