@@ -52,6 +52,7 @@
                                 @endif
                             </select>
                         </div>
+
                     </div>
 
                     <div style="margin-top: 5px">
@@ -65,6 +66,9 @@
             <div>
                 <a href="{{route('transport-mode-form')}}"><button class="mb-3 flex w-full items-center justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50" data-te-ripple-init data-te-ripple-color="light">Back</button></a>
             </div>
+            @if(session('message'))
+                {{ session('message') }}
+            @endif
         </div>
 
         <div class="text-white w-1/3" style="margin-left:20px;margin-top: 100px; border-radius: 8px; height: 90%; padding: 3rem;background-color: rgb(17, 24, 39);">
