@@ -14,9 +14,10 @@ class receiptNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($user, $travelHistory)
     {
-        //
+        $this->user = $user;
+        $this->travelHistory = $travelHistory;
     }
 
     /**
@@ -35,9 +36,10 @@ class receiptNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.') #receipt
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject('Payment Receipt') // Set the email subject
+            ->view('receipt', ['user' => $this->user, 'travelHistory' => $this->travelHistory]);
+
+
     }
 
     /**

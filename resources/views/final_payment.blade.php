@@ -91,20 +91,27 @@
         </div>
     </form>
 
-        <form action="{{ route('email-receipt') }}" method="get">
+
+
+        <form action="{{ route('email-receipt') }}" method="post">
             @csrf
-    <div class="login-form-control-single">
-        <div class="login-form-control-single">
-            <button class="login-form-submit-btn" type="submit" style = "position:absolute; right:690px; top: 450px">Send Payment Receipt through email</button>
-        </div>
-    </div>
+            <div class="login-form-control-single">
+                <div class="login-form-control-single">
+                    <button class="login-form-submit-btn" type="submit" style = "position:absolute; right:690px; top: 450px">Send Payment Receipt through email</button>
+                </div>
+            </div>
         </form>
 
     </body>
 @endsection
 
 @section('footer')
-    <!-- Include any footer content or leave it empty -->
+    @if (session('success'))
+        <div class="alert alert-success" style="position: fixed; bottom: 10px; right: 10px; background-color: white; color: green; border: 1px solid green; padding: 10px;">
+            {{ session('success') }}
+        </div>
+   @endif
+
 @endsection
 
 </html>

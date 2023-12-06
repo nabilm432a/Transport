@@ -124,5 +124,5 @@ use App\Http\Controllers\TicketController;
 Route::get('/view-ticket', [TicketController::class, 'showTicket'])->name('view-ticket');
 
 use App\Http\Controllers\EmailreceiptController;
-Route::get('/email-receipt', [EmailreceiptController::class, 'emailReceipt'])->name('email-receipt');
+Route::post('/email-receipt', [EmailreceiptController::class, 'emailReceipt'])->name('email-receipt');
 

@@ -36,7 +36,7 @@ class TripNotification extends Notification
     {
         return (new MailMessage)
                     ->line('You have made a new booking, Congratulations')
-                    ->line('Thank you for using our application!');
+                    ->line('Thank you for using our website!');
     }
 
     /**
