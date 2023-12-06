@@ -3,6 +3,7 @@
     <div class="ticket-container">
         <div class="ticket-header">
             <h2>Transportation Mangement System</h2>
+            <h4>Payment Receipt</h4>
         </div>
         <div class="ticket-details">
             <p><strong>Name: {{ $user->name }}</strong> </p>

@@ -30,21 +30,31 @@ class PaymentController extends Controller
 
         foreach ($travelHistories as $travelHistory) {
             $travelHistory->update(['payment_status' => 'Paid']);
+
+
+            #new
+            // Check if the user has 100 or more points for a discount
+            if ($user->points >= 100) {
+                // Apply a 30% discount to the final price
+                $discountedPrice = $travelHistory->final_price * 0.7;
+                $travelHistory->update(['final_price' => $discountedPrice]);
+
+                // Deduct 100 points from the user
+                $user->points -= 50;
+                $user->save();
+            }
+            #end
+
+
+
+
         }
 
 
         // Fetch user table's all attributes
         $userAttributes = $user->attributesToArray();
 
-// ...
 
-// Assuming 'id' is the primary key column in your 'rails' table
-//        $rail = Rail::find(session('id'));
-//
-//        if ($rail) {
-//            $rail->capacity = $rail->capacity - 1;
-//            $rail->save();
-//        }
         return redirect()->route('finalPage', compact('userAttributes'));
 
     }

@@ -12,26 +12,6 @@ class EmailreceiptController extends Controller
 {
     public function emailReceipt()
     {
-//        // Replace the following with your actual ticket data retrieval logic
-//        $userId = auth()->id();
-//
-//        // Fetch user details
-//        $user = User::findOrFail($userId); // Assuming you have a 'users' table
-//
-//        // Fetch travel history details
-//        $travelHistory = Travelhistory::where('user_id', $userId)
-//            ->latest()
-//            ->first(); // Assuming you have a 'travelhistories' table
-//        $user = Auth::user(); // or however you retrieve the user
-//        $travelHistory = $user->travelHistory; // adjust this based on your actual relationship
-//
-//        $user->notify(new receiptNotification($user, $travelHistory));
-
-        // Pass the values to the view ticket page
-//        return view('receipt', [
-//            'user' => $user,
-//            'travelHistory' => $travelHistory,
-//        ]);
 
         $userId = auth()->id();
 
