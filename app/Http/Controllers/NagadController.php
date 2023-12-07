@@ -6,10 +6,6 @@ use Illuminate\Http\Request;
 
 class NagadController extends Controller
 {
-//    public function showNagadForm()
-//    {
-//        return view('payment.nagad');
-//    }
 
     public function showNagadForm(Request $request)
     {

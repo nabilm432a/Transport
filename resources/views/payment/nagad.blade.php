@@ -157,7 +157,6 @@
 @endsection
 
 @section('footer')
-    <!-- Include any footer content or leave it empty -->
 @endsection
 
 </html>

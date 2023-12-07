@@ -15,15 +15,15 @@ class EmailreceiptController extends Controller
 
         $userId = auth()->id();
 
-        // Fetch user details
+        //Fetching user details
         $user = User::findOrFail($userId);
 
-        // Fetch travel history details
+        //Fetching travel history details
         $travelHistory = Travelhistory::where('user_id', $userId)
             ->latest()
             ->first();
 
-        // Notify the user
+        //Notifying the user
         $user->notify(new receiptNotification($user, $travelHistory));
         return redirect()->back()->with('success', 'Payment receipt sent successfully!');
 

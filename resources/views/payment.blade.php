@@ -96,15 +96,6 @@
             </div>
         </form>
 
-{{--            <div class="container">--}}
-{{--                <h1>Payment Page</h1>--}}
-
-
-{{--                    <p>User ID:{{$travel_history['user_id']}} </p>--}}
-{{--                    <p>Travel ID: {{$travel_history['travel_id']}}</p>--}}
-{{--                    <p>Final Price: {{$travel_history['final_price']}}</p>--}}
-{{--                    <!-- Add more details as needed -->--}}
-{{--            </div>--}}
 
 
 
@@ -113,7 +104,7 @@
 @endsection
 
 @section('footer')
-    <!-- Include any footer content or leave it empty -->
+
 @endsection
 
 </html>

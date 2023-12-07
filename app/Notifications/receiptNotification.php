@@ -36,7 +36,7 @@ class receiptNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Payment Receipt') // Set the email subject
+            ->subject('Payment Receipt') //email subject
             ->view('receipt', ['user' => $this->user, 'travelHistory' => $this->travelHistory]);
 
 

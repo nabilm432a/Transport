@@ -544,28 +544,9 @@
 <body style="background-image: url('{{asset("images/Abstract-Dark-Red-Layers-AI-Generated-4K-Wallpaper.jpg")}}')">
 <body>
 @section('header')
-    <!-- Include your header content here -->
 @endsection
 
 @section('main')
-{{--    <div class="ticket-container">--}}
-{{--        <div class="ticket-header">--}}
-{{--            <h2>Airplane Ticket</h2>--}}
-{{--        </div>--}}
-{{--        <div class="ticket-details">--}}
-{{--            <p><strong>Name: {{ $user->name }}</strong> </p>--}}
-{{--            <p><strong>Email: {{ $user->email }}</strong> </p>--}}
-{{--            <p><strong>Contact: {{ $user->contact }}</strong> </p>--}}
-{{--            <p><strong>NID: {{ $user->nid }}</strong> </p>--}}
-{{--            <p><strong>Passport: {{ $user->passport }}</strong> </p>--}}
-{{--            <p><strong>Travel Date: {{ \Carbon\Carbon::parse($travelHistory->created_at)->format('Y-m-d') }}<strong></p>--}}
-{{--            <!-- Add more details as needed -->--}}
-{{--        </div>--}}
-{{--        <div class="ticket-footer">--}}
-
-{{--            <p><strong>Final Price: {{ $travelHistory->final_price }}</strong> </p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
 
 
 <div class="box">
@@ -638,7 +619,7 @@
 @endsection
 
 @section('footer')
-    <!-- Include any footer content or leave it empty -->
+
 @endsection
 </body>
 </html>

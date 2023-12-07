@@ -93,8 +93,6 @@ use App\Http\Controllers\PaymentController;
 
 
 
-
-
 //Route::get('/payment/{travel_history}', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
 Route::get('/payment/{travel_history}', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
 //Route::post('/bkash',['BkashController@showBkashForm'])->name('bkash');
