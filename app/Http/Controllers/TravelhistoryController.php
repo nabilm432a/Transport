@@ -57,20 +57,6 @@ class TravelhistoryController extends Controller
         elseif($transport_mode == 'rail') {
             $price = $travel->railRoute->fare;
         }
-//        try {
-//            $travel_history=Travelhistory::create(array('user_id' => $u_id,
-//                    'travel_id' => $t_id,
-//                    'final_price' => $price,)
-//            );
-//
-//            $travel->increment('booked_seats');
-//            $user->notify((new TripNotification()));
-//            $travel->save();
-//            $travel_history->refresh();
-//        } catch(QueryException $e) {
-//            $message = 'Unable to book';
-//        }
-//        return view("payment",compact("travel_history"));
 
         try {
             if($travel->booked_seats < $travel->total_seats) {

@@ -34,14 +34,14 @@
                     </a>
                 @endguest
                 @auth
-                    <a class="mb-3 flex justify-center rounded bg-amber-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50"
-                       href="{{route('transport-mode-form')}}"
-                       role="button"
-                       data-te-ripple-init
-                       data-te-ripple-color="light">
-                        &nbsp;&nbsp;Book A Ticket
-                    </a>
                     @if(!auth()->user()->is_admin)
+                        <a class="mb-3 flex justify-center rounded bg-amber-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50"
+                           href="{{route('transport-mode-form')}}"
+                           role="button"
+                           data-te-ripple-init
+                           data-te-ripple-color="light">
+                            &nbsp;&nbsp;Book A Ticket
+                        </a>
                         <a class="mb-3 flex justify-center rounded bg-red-400 bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white opacity-100 transition duration-300 ease-in-out hover:opacity-50"
                            href="{{route('profile')}}"
                            role="button"
